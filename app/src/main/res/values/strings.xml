@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TransactionApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="autorizacion_de_transaccion">Autorizacion de Transacción</string>
+    <string name="anulacion_de_transaccion">Anulación de Transacción</string>
+    <string name="buscar_transaccion">Buscar Transacción</string>
+    <string name="mostrar_Transacciones">Mostrar Transacciones</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
