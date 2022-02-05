@@ -43,7 +43,7 @@
         tools:layout="@layout/fragment_search_transaction" />
     <fragment
         android:id="@+id/transactionAuthorizationFragment"
-        android:name="com.transactionapp.authorizetransaction.framework.ui.TransactionAuthorizationFragment"
+        android:name="com.transactionapp.transactionauthorization.framework.ui.TransactionAuthorizationFragment"
         android:label="fragment_transaction_authorization"
         tools:layout="@layout/fragment_transaction_authorization" />
     <fragment
