@@ -8,6 +8,7 @@ import com.transactionapp.base.domain.ResultData
 import com.transactionapp.base.framework.restapi.model.AuthorizationBody
 import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 import com.transactionapp.transactionauthorization.usecase.PostTransactionAuthorizationUseCase
+import com.transactionapp.transactionauthorization.usecase.PostTransactionAuthorizationUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.functions.Consumer
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TransactionAuthorizationViewModelImpl @Inject constructor(
-    private val postTransactionAuthorizationUseCase: PostTransactionAuthorizationUseCase
+    private val postTransactionAuthorizationUseCase: PostTransactionAuthorizationUseCaseImpl
 ): TransactionAuthorizationViewModel, ViewModel() {
 
     private var postTransactionAuthorizationJob: Job? = null

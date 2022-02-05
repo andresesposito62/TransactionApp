@@ -4,10 +4,11 @@ import com.transactionapp.base.domain.ResultData
 import com.transactionapp.base.framework.restapi.model.AuthorizationBody
 import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 import com.transactionapp.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSource
+import com.transactionapp.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
 import javax.inject.Inject
 
 class TransactionAuthorizationRepositoryImpl @Inject constructor(
-    private val transactionAuthorizationRemoteSource: TransactionAuthorizationRemoteSource
+    private val transactionAuthorizationRemoteSource: TransactionAuthorizationRemoteSourceImpl
 ): TransactionAuthorizationRepository {
 
     override suspend fun postTransactionAuthorization(

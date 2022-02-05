@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/activity_about.xml" value="0.10960144927536232" />
-        <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/activity_home.xml" value="0.12" />
+        <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/activity_main.xml" value="0.14375" />
         <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/bottom_menu.xml" value="0.2912371134020619" />
         <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/fragment_button_sheet.xml" value="0.14375" />
@@ -12,9 +12,10 @@
         <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/fragment_list_transaction.xml" value="0.21331521739130435" />
         <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/fragment_search_transaction.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/fragment_transaction_annulment.xml" value="0.21331521739130435" />
-        <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/fragment_transaction_authorization.xml" value="0.21331521739130435" />
+        <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/fragment_transaction_authorization.xml" value="0.16956521739130434" />
         <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/layout/main_menu.xml" value="0.14375" />
         <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/menu/navigation_menu.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/user/TransactionApp/TransactionApp/app/src/main/res/xml/network_security_config.xml" value="0.1259259259259259" />
       </map>
     </option>
   </component>
