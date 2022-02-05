@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.transactionapp.HomeFragment"
+        android:name="com.transactionapp.home.framework.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -28,27 +28,27 @@
     </fragment>
     <fragment
         android:id="@+id/listTransactionFragment"
-        android:name="com.transactionapp.ListTransactionFragment"
+        android:name="com.transactionapp.showtransactions.framework.ui.ShowTransactionsFragment"
         android:label="fragment_list_transaction"
         tools:layout="@layout/fragment_list_transaction" />
     <fragment
         android:id="@+id/transactionAnnulmentFragment"
-        android:name="com.transactionapp.TransactionAnnulmentFragment"
+        android:name="com.transactionapp.transactionannulment.framework.ui.TransactionAnnulmentFragment"
         android:label="fragment_transaction_annulment"
         tools:layout="@layout/fragment_transaction_annulment" />
     <fragment
         android:id="@+id/searchTransactionFragment"
-        android:name="com.transactionapp.SearchTransactionFragment"
+        android:name="com.transactionapp.searchtransaction.framework.ui.SearchTransactionFragment"
         android:label="fragment_search_transaction"
         tools:layout="@layout/fragment_search_transaction" />
     <fragment
         android:id="@+id/transactionAuthorizationFragment"
-        android:name="com.transactionapp.TransactionAuthorizationFragment"
+        android:name="com.transactionapp.authorizetransaction.framework.ui.TransactionAuthorizationFragment"
         android:label="fragment_transaction_authorization"
         tools:layout="@layout/fragment_transaction_authorization" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.transactionapp.AboutFragment"
+        android:name="com.transactionapp.about.framework.ui.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
 </navigation>
