@@ -1,4 +1,4 @@
-package com.transactionapp.base
+package com.transactionapp.base.framework.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
