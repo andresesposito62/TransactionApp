@@ -1,6 +1,6 @@
 package com.transactionapp.base.framework.di
 
-import com.transactionapp.base.framework.restapi.ServicesRestApi
+import com.transactionapp.transactionauthorization.data.TransactionAuthorizationRepositoryImpl
 import com.transactionapp.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
 import dagger.Module
 import dagger.Provides
@@ -10,12 +10,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataSourceModule {
+object RepositoryModule {
 
     @Singleton
     @Provides
-    fun transactionAuthorizationDataSourceProvide(
-        servicesRestApi: ServicesRestApi
-    ) = TransactionAuthorizationRemoteSourceImpl(servicesRestApi)
-
+    fun transactionAuthorizationRepositoryProvide(
+        transactionAuthorizationDataSourceImpl: TransactionAuthorizationRemoteSourceImpl
+    ) = TransactionAuthorizationRepositoryImpl(transactionAuthorizationDataSourceImpl)
 }
