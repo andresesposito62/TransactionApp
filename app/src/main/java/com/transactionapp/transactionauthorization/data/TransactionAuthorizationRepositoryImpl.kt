@@ -13,6 +13,6 @@ class TransactionAuthorizationRepositoryImpl @Inject constructor(
     override suspend fun postTransactionAuthorization(
         authorization: String,
         authorizationBody: AuthorizationBody
-    ): ResultData<AuthorizationResponse> = transactionAuthorizationRemoteSource
+    ): ResultData<AuthorizationResponse?> = transactionAuthorizationRemoteSource
         .postTransactionAuthorization(authorization, authorizationBody)
 }

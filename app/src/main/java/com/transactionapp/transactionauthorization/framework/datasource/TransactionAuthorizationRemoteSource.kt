@@ -8,5 +8,5 @@ interface TransactionAuthorizationRemoteSource {
     suspend fun postTransactionAuthorization(
         authorization: String,
         authorizationBody: AuthorizationBody
-    ): ResultData<AuthorizationResponse>
+    ): ResultData<AuthorizationResponse?>
 }
