@@ -1,8 +1,6 @@
 package com.transactionapp.app.framework.di
 
 import com.transactionapp.app.framework.database.dao.TransactionDao
-import com.transactionapp.features.transactionannulment.data.TransactionAnnulmentRepository
-import com.transactionapp.features.transactionannulment.data.TransactionAnnulmentRepositoryImpl
 import com.transactionapp.features.transactionannulment.framework.datasource.TransactionAnnulmentRemoteSourceImpl
 import com.transactionapp.app.data.TransactionRepositoryImpl
 import com.transactionapp.features.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
@@ -18,15 +16,11 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun transactionAuthorizationRepositoryProvide(
+    fun transactionRepositoryProvide(
         transactionAuthorizationDataSourceImpl: TransactionAuthorizationRemoteSourceImpl,
-        transactionAuthorizationDao: TransactionDao
+        transactionAuthorizationDao: TransactionDao,
+        transactionAnnulmentRemoteSource: TransactionAnnulmentRemoteSourceImpl
     ) = TransactionRepositoryImpl(transactionAuthorizationDataSourceImpl,
-        transactionAuthorizationDao)
-
-    @Singleton
-    @Provides
-    fun transactionAnnulmentRepositoryProvide(
-        transactionAnnulmentRemoteSourceImpl: TransactionAnnulmentRemoteSourceImpl
-    ): TransactionAnnulmentRepository = TransactionAnnulmentRepositoryImpl(transactionAnnulmentRemoteSourceImpl)
+        transactionAuthorizationDao,
+        transactionAnnulmentRemoteSource)
 }

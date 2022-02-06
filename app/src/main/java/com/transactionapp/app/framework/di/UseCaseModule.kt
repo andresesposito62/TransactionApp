@@ -1,6 +1,5 @@
 package com.transactionapp.app.framework.di
 
-import com.transactionapp.features.transactionannulment.data.TransactionAnnulmentRepositoryImpl
 import com.transactionapp.features.transactionannulment.usecase.PostTransactionAnnulmentUseCaseImpl
 import com.transactionapp.app.data.TransactionRepositoryImpl
 import com.transactionapp.features.showtransactions.usecase.GetTransactionsUseCaseImpl
@@ -21,8 +20,8 @@ object UseCaseModule {
 
     @Provides
     fun postTransactionAnnulmentUseCaseImplProvide(
-        transactionAnnulmentRepositoryImpl: TransactionAnnulmentRepositoryImpl
-    ) = PostTransactionAnnulmentUseCaseImpl(transactionAnnulmentRepositoryImpl)
+        transactionRepositoryImpl: TransactionRepositoryImpl
+    ) = PostTransactionAnnulmentUseCaseImpl(transactionRepositoryImpl)
 
     @Provides
     fun getTransactionsUseCaseImpl(

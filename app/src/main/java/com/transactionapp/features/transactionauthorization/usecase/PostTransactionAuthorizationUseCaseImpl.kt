@@ -8,7 +8,7 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class PostTransactionAuthorizationUseCaseImpl @Inject constructor(
-    private val transactionAuthorizationRepository: TransactionRepositoryImpl
+    private val transactionRepository: TransactionRepositoryImpl
 ): PostTransactionAuthorizationUseCase {
 
     override suspend fun postTransactionAuthorization(
@@ -16,7 +16,7 @@ class PostTransactionAuthorizationUseCaseImpl @Inject constructor(
         transactionAuthorizationBody: TransactionAuthorizationBody
     ): Single<ResultData<AuthorizationResponse?>> {
         return when (
-            val result = transactionAuthorizationRepository
+            val result = transactionRepository
                         .postTransactionAuthorization(authorization, transactionAuthorizationBody)){
 
             is ResultData.Success<*> -> Single.just(result)

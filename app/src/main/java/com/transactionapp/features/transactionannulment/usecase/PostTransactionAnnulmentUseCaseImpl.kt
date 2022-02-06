@@ -1,14 +1,14 @@
 package com.transactionapp.features.transactionannulment.usecase
 
+import com.transactionapp.app.data.TransactionRepositoryImpl
 import com.transactionapp.app.domain.ResultData
 import com.transactionapp.app.framework.restapi.model.TransactionAnnulmentBody
-import com.transactionapp.features.transactionannulment.data.TransactionAnnulmentRepositoryImpl
 import com.transactionapp.features.transactionannulment.domain.AnnulmentResponse
 import io.reactivex.Single
 import javax.inject.Inject
 
 class PostTransactionAnnulmentUseCaseImpl @Inject constructor(
-    private val transactionAnnulmentRepository: TransactionAnnulmentRepositoryImpl
+    private val transactionRepositoryImpl: TransactionRepositoryImpl
 ): PostTransactionAnnulmentUseCase {
 
     override suspend fun postTransactionAnnulment(
@@ -16,7 +16,7 @@ class PostTransactionAnnulmentUseCaseImpl @Inject constructor(
         transactionAnnulmentBody: TransactionAnnulmentBody
     ): Single<ResultData<AnnulmentResponse?>> {
         return when (
-            val result = transactionAnnulmentRepository
+            val result = transactionRepositoryImpl
                     .postTransactionAnnulment(authorization, transactionAnnulmentBody)){
 
             is ResultData.Success<*> -> Single.just(result)

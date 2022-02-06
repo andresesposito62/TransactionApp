@@ -42,7 +42,7 @@ class TransactionAnnulmentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val authorization = "Basic MDAwMTIzMDAwQUJD"
-        val annulmentBody = TransactionAnnulmentBody("4612671f-566a-42a7-b640-f32defe90275", "0aa35a53-1acd-465b-bf76-503b25b5e374")
+        val annulmentBody = TransactionAnnulmentBody("b8711bc4-bede-448c-9c9d-9a9ea59420c3", "0aa35a53-1acd-465b-bf76-503b25b5e374")
 
         viewModel.onPostTransactionAnnulment(authorization, annulmentBody)
     }

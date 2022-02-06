@@ -7,13 +7,16 @@ import com.transactionapp.app.framework.database.dao.TransactionDao
 import com.transactionapp.app.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.features.transactionauthorization.domain.AuthorizationResponse
 import com.transactionapp.app.domain.Transaction
+import com.transactionapp.app.framework.restapi.model.TransactionAnnulmentBody
+import com.transactionapp.features.transactionannulment.domain.AnnulmentResponse
+import com.transactionapp.features.transactionannulment.framework.datasource.TransactionAnnulmentRemoteSourceImpl
 import com.transactionapp.features.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
 import javax.inject.Inject
-import kotlin.contracts.Returns
 
 class TransactionRepositoryImpl @Inject constructor(
     private val transactionAuthorizationRemoteSource: TransactionAuthorizationRemoteSourceImpl,
-    private val transactionDao: TransactionDao
+    private val transactionDao: TransactionDao,
+    private val transactionAnnulmentRemoteSource: TransactionAnnulmentRemoteSourceImpl
 ): TransactionRepository {
 
     override suspend fun postTransactionAuthorization(
@@ -25,17 +28,16 @@ class TransactionRepositoryImpl @Inject constructor(
                 .postTransactionAuthorization(authorization, transactionAuthorizationBody)
 
         when (result){
-            is ResultData.Success<*> -> storeTransaction(transactionAuthorizationBody, result.value as AuthorizationResponse)
+            is ResultData.Success<*> -> storeTransactionInDatabase(transactionAuthorizationBody, result.value as AuthorizationResponse)
         }
 
         return result
     }
 
-     override suspend fun storeTransaction(
+     override suspend fun storeTransactionInDatabase(
         transactionAuthorizationBody: TransactionAuthorizationBody,
         authorizationResponse  : AuthorizationResponse
     ){
-
         val transaction = Transaction(
             transactionAuthorizationBody.transactionId,
             transactionAuthorizationBody.commerceCode,
@@ -50,7 +52,6 @@ class TransactionRepositoryImpl @Inject constructor(
 
         val roomEntity = Utils.generateTransactionRoomEntity(transaction)
         transactionDao.insert(roomEntity)
-
     }
 
     override suspend fun getTransactionsList(receiptId: String): ResultData<List<Transaction?>> {
@@ -63,6 +64,27 @@ class TransactionRepositoryImpl @Inject constructor(
         }else{
             val result = listOf(generateTransactionModel(transactionDao.getTransactionByReceiptId(receiptId)))
             ResultData.Success(result)
+        }
+    }
+
+    override suspend fun postTransactionAnnulment(
+        authorization: String,
+        transactionAnnulmentBody: TransactionAnnulmentBody
+    ): ResultData<AnnulmentResponse?> {
+
+        val result = transactionAnnulmentRemoteSource.postTransactionAuthorization(authorization, transactionAnnulmentBody)
+
+        when (result){
+            is ResultData.Success<*> -> transactionAnnulmentBody.receiptId?.let { deleteTransactionOfDatabase(it) }
+        }
+
+        return result
+    }
+
+    override suspend fun deleteTransactionOfDatabase(receiptId: String){
+        val transactionFound = transactionDao.getTransactionByReceiptId(receiptId)
+        if (transactionFound?.receiptId != null){
+            transactionDao.deleteByReceiptId(transactionFound.receiptId!!)
         }
     }
 

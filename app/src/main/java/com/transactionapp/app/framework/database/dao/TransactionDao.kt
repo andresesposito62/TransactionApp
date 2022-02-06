@@ -15,4 +15,7 @@ abstract class TransactionDao {
 
     @Query("SELECT * FROM transacions WHERE receiptId = :receiptId")
     abstract fun getTransactionByReceiptId(receiptId: String): TransactionRoomEntity
+
+    @Query("DELETE FROM transacions WHERE receiptId = :receiptId")
+    abstract fun deleteByReceiptId(receiptId: String)
 }
