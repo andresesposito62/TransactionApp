@@ -2,7 +2,6 @@ package com.transactionapp.base.framework.di
 
 import com.transactionapp.base.framework.restapi.ServicesEndPoints
 import com.transactionapp.base.framework.restapi.ServicesRestApi
-import com.transactionapp.transactionannulment.framework.datasource.TransactionAnnulmentRemoteSource
 import com.transactionapp.transactionannulment.framework.datasource.TransactionAnnulmentRemoteSourceImpl
 import com.transactionapp.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
 import dagger.Module
@@ -11,7 +10,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module

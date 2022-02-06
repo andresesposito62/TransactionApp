@@ -9,6 +9,7 @@ import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -28,13 +29,16 @@ class TransactionAnnulmentRemoteSourceImpl @Inject constructor(
                     call: Call<AnnulmentResponse>,
                     response: Response<AnnulmentResponse>
                 ) {
-                    it.resume(ResultData.Success(response.body()!!))
+                    if (response.code() in 200..399){
+                        it.resume(ResultData.Success(response.body()!!))
+                    }else{
+                        it.resume(ResultData.Failure(Exception(response.code().toString())))
+                    }
                 }
 
                 override fun onFailure(call: Call<AnnulmentResponse>, error: Throwable) {
                     it.resume(ResultData.Failure(error))
                 }
-
             })
         }
 }

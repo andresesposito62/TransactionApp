@@ -17,7 +17,7 @@ interface ServicesRestApi {
         @Body transactionAuthorizationBody: TransactionAuthorizationBody
     ): Call<AuthorizationResponse>?
 
-    @POST(ServicesEndPoints.POST_AUTHORIZATION)
+    @POST(ServicesEndPoints.POST_ANNULMENT)
     fun transactionAnnulmentResponse(
         @Header(AUTHORIZATION) authorization: String,
         @Body transactionAnnulmentBody: TransactionAnnulmentBody

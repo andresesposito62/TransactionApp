@@ -22,6 +22,5 @@ class PostTransactionAuthorizationUseCaseImpl @Inject constructor(
             is ResultData.Success<*> -> Single.just(result)
             is ResultData.Failure<*> -> Single.just(result)
         }
-
     }
 }

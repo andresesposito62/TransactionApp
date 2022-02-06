@@ -5,41 +5,50 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.transactionapp.R
+import com.transactionapp.base.framework.restapi.model.TransactionAnnulmentBody
+import com.transactionapp.base.framework.restapi.model.TransactionAuthorizationBody
+import com.transactionapp.databinding.FragmentTransactionAnnulmentBinding
+import com.transactionapp.databinding.FragmentTransactionAuthorizationBinding
+import com.transactionapp.transactionannulment.viewmodel.TransactionAnnulmentViewModelImpl
+import com.transactionapp.transactionauthorization.viewmodel.TransactionAuthorizationViewModelImpl
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class TransactionAnnulmentFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var viewModel: TransactionAnnulmentViewModelImpl
+
+    private var _binding: FragmentTransactionAnnulmentBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transaction_annulment, container, false)
+
+        viewModel = ViewModelProvider(requireActivity())[TransactionAnnulmentViewModelImpl::class.java]
+
+        viewModel.transactionAnnulmentErrorLiveData.observe(viewLifecycleOwner) {
+            binding.textView.text = it
+        }
+
+        viewModel.transactionAnnulmentResultLiveData.observe(viewLifecycleOwner) {
+            binding.textView.text = it.toString()
+        }
+
+        _binding = FragmentTransactionAnnulmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        private const val ARG_PARAM1 = "param1"
-        private const val ARG_PARAM2 = "param2"
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TransactionAnnulmentFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val authorization = "Basic MDAwMTIzMDAwQUJD"
+        val annulmentBody = TransactionAnnulmentBody("4612671f-566a-42a7-b640-f32defe90275", "0aa35a53-1acd-465b-bf76-503b25b5e374")
+
+        viewModel.onPostTransactionAnnulment(authorization, annulmentBody)
     }
 }
