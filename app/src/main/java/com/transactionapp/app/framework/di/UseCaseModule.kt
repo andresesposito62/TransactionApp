@@ -1,10 +1,10 @@
 package com.transactionapp.app.framework.di
 
-import com.transactionapp.transactionannulment.data.TransactionAnnulmentRepositoryImpl
-import com.transactionapp.transactionannulment.usecase.PostTransactionAnnulmentUseCaseImpl
+import com.transactionapp.features.transactionannulment.data.TransactionAnnulmentRepositoryImpl
+import com.transactionapp.features.transactionannulment.usecase.PostTransactionAnnulmentUseCaseImpl
 import com.transactionapp.app.data.TransactionRepositoryImpl
-import com.transactionapp.showtransactions.usecase.GetTransactionsUseCaseImpl
-import com.transactionapp.transactionauthorization.usecase.PostTransactionAuthorizationUseCaseImpl
+import com.transactionapp.features.showtransactions.usecase.GetTransactionsUseCaseImpl
+import com.transactionapp.features.transactionauthorization.usecase.PostTransactionAuthorizationUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

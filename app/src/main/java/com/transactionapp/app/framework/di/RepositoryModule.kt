@@ -1,11 +1,11 @@
 package com.transactionapp.app.framework.di
 
 import com.transactionapp.app.framework.database.dao.TransactionDao
-import com.transactionapp.transactionannulment.data.TransactionAnnulmentRepository
-import com.transactionapp.transactionannulment.data.TransactionAnnulmentRepositoryImpl
-import com.transactionapp.transactionannulment.framework.datasource.TransactionAnnulmentRemoteSourceImpl
+import com.transactionapp.features.transactionannulment.data.TransactionAnnulmentRepository
+import com.transactionapp.features.transactionannulment.data.TransactionAnnulmentRepositoryImpl
+import com.transactionapp.features.transactionannulment.framework.datasource.TransactionAnnulmentRemoteSourceImpl
 import com.transactionapp.app.data.TransactionRepositoryImpl
-import com.transactionapp.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
+import com.transactionapp.features.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

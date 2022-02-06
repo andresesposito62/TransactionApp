@@ -5,10 +5,11 @@ import com.transactionapp.app.framework.Utils
 import com.transactionapp.app.framework.Utils.generateTransactionModel
 import com.transactionapp.app.framework.database.dao.TransactionDao
 import com.transactionapp.app.framework.restapi.model.TransactionAuthorizationBody
-import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
-import com.transactionapp.transactionauthorization.domain.Transaction
-import com.transactionapp.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
+import com.transactionapp.features.transactionauthorization.domain.AuthorizationResponse
+import com.transactionapp.app.domain.Transaction
+import com.transactionapp.features.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
 import javax.inject.Inject
+import kotlin.contracts.Returns
 
 class TransactionRepositoryImpl @Inject constructor(
     private val transactionAuthorizationRemoteSource: TransactionAuthorizationRemoteSourceImpl,
@@ -52,11 +53,17 @@ class TransactionRepositoryImpl @Inject constructor(
 
     }
 
-    override suspend fun getTransactionsList(): ResultData<List<Transaction?>> {
-        val result =  transactionDao.getTransactionList().map {
-            generateTransactionModel(it)
+    override suspend fun getTransactionsList(receiptId: String): ResultData<List<Transaction?>> {
+
+        return if (receiptId == ""){
+            val result =  transactionDao.getTransactionList().map {
+                generateTransactionModel(it)
+            }
+            ResultData.Success(result)
+        }else{
+            val result = listOf(generateTransactionModel(transactionDao.getTransactionByReceiptId(receiptId)))
+            ResultData.Success(result)
         }
-        return ResultData.Success(result)
     }
 
 }

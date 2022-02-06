@@ -1,9 +1,10 @@
 package com.transactionapp.app.framework.di
 
-import com.transactionapp.showtransactions.usecase.GetTransactionsUseCaseImpl
-import com.transactionapp.showtransactions.viewmodel.ShowTransactionsViewModelImpl
-import com.transactionapp.transactionauthorization.usecase.PostTransactionAuthorizationUseCaseImpl
-import com.transactionapp.transactionauthorization.viewmodel.TransactionAuthorizationViewModelImpl
+import com.transactionapp.features.searchtransaction.viewmodel.SearchTransactionViewModelImpl
+import com.transactionapp.features.showtransactions.usecase.GetTransactionsUseCaseImpl
+import com.transactionapp.features.showtransactions.viewmodel.ShowTransactionsViewModelImpl
+import com.transactionapp.features.transactionauthorization.usecase.PostTransactionAuthorizationUseCaseImpl
+import com.transactionapp.features.transactionauthorization.viewmodel.TransactionAuthorizationViewModelImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,6 +21,11 @@ object ViewModelModule {
 
     @Provides
     fun showTransactionsViewModelProvide(
-        etTransactionsUseCaseImpl: GetTransactionsUseCaseImpl
-    ) = ShowTransactionsViewModelImpl(etTransactionsUseCaseImpl)
+        getTransactionsUseCaseImpl: GetTransactionsUseCaseImpl
+    ) = ShowTransactionsViewModelImpl(getTransactionsUseCaseImpl)
+
+    @Provides
+    fun searchTransactionViewModelProvide(
+        getTransactionsUseCaseImpl: GetTransactionsUseCaseImpl
+    ) = SearchTransactionViewModelImpl(getTransactionsUseCaseImpl)
 }

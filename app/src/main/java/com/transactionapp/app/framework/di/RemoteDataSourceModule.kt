@@ -2,8 +2,8 @@ package com.transactionapp.app.framework.di
 
 import com.transactionapp.app.framework.restapi.ServicesEndPoints
 import com.transactionapp.app.framework.restapi.ServicesRestApi
-import com.transactionapp.transactionannulment.framework.datasource.TransactionAnnulmentRemoteSourceImpl
-import com.transactionapp.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
+import com.transactionapp.features.transactionannulment.framework.datasource.TransactionAnnulmentRemoteSourceImpl
+import com.transactionapp.features.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,8 +1,7 @@
 package com.transactionapp.app.framework
 
-import com.google.gson.annotations.SerializedName
 import com.transactionapp.app.framework.database.entity.TransactionRoomEntity
-import com.transactionapp.transactionauthorization.domain.Transaction
+import com.transactionapp.app.domain.Transaction
 
 object Utils {
 

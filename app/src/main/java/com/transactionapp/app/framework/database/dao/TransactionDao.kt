@@ -13,4 +13,6 @@ abstract class TransactionDao {
     @Query("SELECT * FROM transacions")
     abstract fun getTransactionList(): List<TransactionRoomEntity>
 
+    @Query("SELECT * FROM transacions WHERE receiptId = :receiptId")
+    abstract fun getTransactionByReceiptId(receiptId: String): TransactionRoomEntity
 }

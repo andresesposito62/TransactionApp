@@ -5,7 +5,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".transactionannulment.framework.ui.TransactionAnnulmentFragment">
+        tools:context=".features.transactionannulment.framework.ui.TransactionAnnulmentFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView

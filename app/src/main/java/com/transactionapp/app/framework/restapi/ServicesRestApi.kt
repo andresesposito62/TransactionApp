@@ -2,8 +2,8 @@ package com.transactionapp.app.framework.restapi
 
 import com.transactionapp.app.framework.restapi.model.TransactionAnnulmentBody
 import com.transactionapp.app.framework.restapi.model.TransactionAuthorizationBody
-import com.transactionapp.transactionannulment.domain.AnnulmentResponse
-import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
+import com.transactionapp.features.transactionannulment.domain.AnnulmentResponse
+import com.transactionapp.features.transactionauthorization.domain.AuthorizationResponse
 import retrofit2.*
 import retrofit2.http.Body
 import retrofit2.http.Header
