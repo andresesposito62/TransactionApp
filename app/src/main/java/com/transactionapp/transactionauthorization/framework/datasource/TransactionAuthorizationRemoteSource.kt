@@ -1,12 +1,12 @@
 package com.transactionapp.transactionauthorization.framework.datasource
 
 import com.transactionapp.base.domain.ResultData
-import com.transactionapp.base.framework.restapi.model.AuthorizationBody
+import com.transactionapp.base.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 
 interface TransactionAuthorizationRemoteSource {
     suspend fun postTransactionAuthorization(
         authorization: String,
-        authorizationBody: AuthorizationBody
+        transactionAuthorizationBody: TransactionAuthorizationBody
     ): ResultData<AuthorizationResponse?>
 }

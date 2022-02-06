@@ -1,7 +1,7 @@
 package com.transactionapp.transactionauthorization.usecase
 
 import com.transactionapp.base.domain.ResultData
-import com.transactionapp.base.framework.restapi.model.AuthorizationBody
+import com.transactionapp.base.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.transactionauthorization.data.TransactionAuthorizationRepositoryImpl
 import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 import io.reactivex.Single
@@ -13,11 +13,11 @@ class PostTransactionAuthorizationUseCaseImpl @Inject constructor(
 
     override suspend fun postTransactionAuthorization(
         authorization: String,
-        authorizationBody: AuthorizationBody
+        transactionAuthorizationBody: TransactionAuthorizationBody
     ): Single<ResultData<AuthorizationResponse?>> {
         return when (
             val result = transactionAuthorizationRepository
-                        .postTransactionAuthorization(authorization, authorizationBody)){
+                        .postTransactionAuthorization(authorization, transactionAuthorizationBody)){
 
             is ResultData.Success<*> -> Single.just(result)
             is ResultData.Failure<*> -> Single.just(result)

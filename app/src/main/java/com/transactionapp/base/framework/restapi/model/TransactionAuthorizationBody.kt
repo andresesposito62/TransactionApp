@@ -3,7 +3,7 @@ package com.transactionapp.base.framework.restapi.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class AuthorizationBody (
+data class TransactionAuthorizationBody (
     @SerializedName("id") var id: String? = null,
     @SerializedName("commerceCode") var commerceCode: String? = null,
     @SerializedName("terminalCode") var terminalCode: String? = null,

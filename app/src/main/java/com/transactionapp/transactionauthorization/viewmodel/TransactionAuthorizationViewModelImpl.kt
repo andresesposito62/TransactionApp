@@ -5,9 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.transactionapp.base.domain.ResultData
-import com.transactionapp.base.framework.restapi.model.AuthorizationBody
+import com.transactionapp.base.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
-import com.transactionapp.transactionauthorization.usecase.PostTransactionAuthorizationUseCase
 import com.transactionapp.transactionauthorization.usecase.PostTransactionAuthorizationUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.functions.Consumer
@@ -32,13 +31,13 @@ class TransactionAuthorizationViewModelImpl @Inject constructor(
 
     override fun onPostTransactionAuthorization(
         authorization: String,
-        authorizationBody: AuthorizationBody
+        transactionAuthorizationBody: TransactionAuthorizationBody
     ) {
         postTransactionAuthorizationJob?.cancel()
         postTransactionAuthorizationJob = viewModelScope.launch {
             withContext(Dispatchers.IO){
                 postTransactionAuthorizationUseCase
-                    .postTransactionAuthorization(authorization, authorizationBody)
+                    .postTransactionAuthorization(authorization, transactionAuthorizationBody)
                         .subscribe(Consumer {
                                 handleTransactionAuthorizationResult(it)
                         })

@@ -2,7 +2,7 @@ package com.transactionapp.transactionauthorization.framework.datasource
 
 import com.transactionapp.base.domain.ResultData
 import com.transactionapp.base.framework.restapi.ServicesRestApi
-import com.transactionapp.base.framework.restapi.model.AuthorizationBody
+import com.transactionapp.base.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,10 +17,10 @@ class TransactionAuthorizationRemoteSourceImpl @Inject constructor(
 
     override suspend fun postTransactionAuthorization(
         authorization: String,
-        authorizationBody: AuthorizationBody
+        transactionAuthorizationBody: TransactionAuthorizationBody
     ): ResultData<AuthorizationResponse?> =
         suspendCoroutine {
-            val result = servicesRestApi.authorizationResponse(authorization, authorizationBody)
+            val result = servicesRestApi.transactionAuthorizationResponse(authorization, transactionAuthorizationBody)
             result?.enqueue(object: Callback<AuthorizationResponse>{
                 override fun onResponse(call: Call<AuthorizationResponse>,
                     response: Response<AuthorizationResponse>
@@ -34,6 +34,4 @@ class TransactionAuthorizationRemoteSourceImpl @Inject constructor(
 
             })
         }
-
-
 }

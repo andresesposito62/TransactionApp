@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.transactionapp.R
-import com.transactionapp.base.framework.restapi.model.AuthorizationBody
+import com.transactionapp.base.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.databinding.FragmentTransactionAuthorizationBinding
 import com.transactionapp.transactionauthorization.viewmodel.TransactionAuthorizationViewModelImpl
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,7 +44,7 @@ class TransactionAuthorizationFragment : Fragment() {
 
         val authorization = "Basic MDAwMTIzMDAwQUJD"
         val uniqueId = UUID.randomUUID().toString()
-        val authorizationBody = AuthorizationBody(uniqueId, "000123", "000ABC", "12345", "1234567890123456")
+        val authorizationBody = TransactionAuthorizationBody(uniqueId, "000123", "000ABC", "12345", "1234567890123456")
 
         viewModel.onPostTransactionAuthorization(authorization, authorizationBody)
 
