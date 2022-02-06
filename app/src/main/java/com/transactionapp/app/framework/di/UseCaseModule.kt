@@ -2,7 +2,8 @@ package com.transactionapp.app.framework.di
 
 import com.transactionapp.transactionannulment.data.TransactionAnnulmentRepositoryImpl
 import com.transactionapp.transactionannulment.usecase.PostTransactionAnnulmentUseCaseImpl
-import com.transactionapp.transactionauthorization.data.TransactionAuthorizationRepositoryImpl
+import com.transactionapp.app.data.TransactionRepositoryImpl
+import com.transactionapp.showtransactions.usecase.GetTransactionsUseCaseImpl
 import com.transactionapp.transactionauthorization.usecase.PostTransactionAuthorizationUseCaseImpl
 import dagger.Module
 import dagger.Provides
@@ -15,11 +16,16 @@ object UseCaseModule {
 
     @Provides
     fun postTransactionAuthenticationUseCaseProvide(
-        transactionAuthorizationRepositoryImpl: TransactionAuthorizationRepositoryImpl
+        transactionAuthorizationRepositoryImpl: TransactionRepositoryImpl
     ) = PostTransactionAuthorizationUseCaseImpl(transactionAuthorizationRepositoryImpl)
 
     @Provides
     fun postTransactionAnnulmentUseCaseImplProvide(
         transactionAnnulmentRepositoryImpl: TransactionAnnulmentRepositoryImpl
     ) = PostTransactionAnnulmentUseCaseImpl(transactionAnnulmentRepositoryImpl)
+
+    @Provides
+    fun getTransactionsUseCaseImpl(
+        transactionRepositoryImpl: TransactionRepositoryImpl
+    ) = GetTransactionsUseCaseImpl(transactionRepositoryImpl)
 }

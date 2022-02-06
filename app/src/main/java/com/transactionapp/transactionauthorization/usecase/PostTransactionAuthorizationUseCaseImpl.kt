@@ -2,13 +2,13 @@ package com.transactionapp.transactionauthorization.usecase
 
 import com.transactionapp.app.domain.ResultData
 import com.transactionapp.app.framework.restapi.model.TransactionAuthorizationBody
-import com.transactionapp.transactionauthorization.data.TransactionAuthorizationRepositoryImpl
+import com.transactionapp.app.data.TransactionRepositoryImpl
 import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 import io.reactivex.Single
 import javax.inject.Inject
 
 class PostTransactionAuthorizationUseCaseImpl @Inject constructor(
-    private val transactionAuthorizationRepository: TransactionAuthorizationRepositoryImpl
+    private val transactionAuthorizationRepository: TransactionRepositoryImpl
 ): PostTransactionAuthorizationUseCase {
 
     override suspend fun postTransactionAuthorization(

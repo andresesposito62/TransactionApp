@@ -4,7 +4,7 @@ import com.transactionapp.app.framework.database.dao.TransactionDao
 import com.transactionapp.transactionannulment.data.TransactionAnnulmentRepository
 import com.transactionapp.transactionannulment.data.TransactionAnnulmentRepositoryImpl
 import com.transactionapp.transactionannulment.framework.datasource.TransactionAnnulmentRemoteSourceImpl
-import com.transactionapp.transactionauthorization.data.TransactionAuthorizationRepositoryImpl
+import com.transactionapp.app.data.TransactionRepositoryImpl
 import com.transactionapp.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
 import dagger.Module
 import dagger.Provides
@@ -21,7 +21,7 @@ object RepositoryModule {
     fun transactionAuthorizationRepositoryProvide(
         transactionAuthorizationDataSourceImpl: TransactionAuthorizationRemoteSourceImpl,
         transactionAuthorizationDao: TransactionDao
-    ) = TransactionAuthorizationRepositoryImpl(transactionAuthorizationDataSourceImpl,
+    ) = TransactionRepositoryImpl(transactionAuthorizationDataSourceImpl,
         transactionAuthorizationDao)
 
     @Singleton

@@ -1,19 +1,19 @@
-package com.transactionapp.transactionauthorization.data
+package com.transactionapp.app.data
 
 import com.transactionapp.app.domain.ResultData
-import com.transactionapp.app.framework.database.Utils
+import com.transactionapp.app.framework.Utils
+import com.transactionapp.app.framework.Utils.generateTransactionModel
 import com.transactionapp.app.framework.database.dao.TransactionDao
 import com.transactionapp.app.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 import com.transactionapp.transactionauthorization.domain.Transaction
 import com.transactionapp.transactionauthorization.framework.datasource.TransactionAuthorizationRemoteSourceImpl
-import io.reactivex.Single
 import javax.inject.Inject
 
-class TransactionAuthorizationRepositoryImpl @Inject constructor(
+class TransactionRepositoryImpl @Inject constructor(
     private val transactionAuthorizationRemoteSource: TransactionAuthorizationRemoteSourceImpl,
-    private val transactionAuthorizationDao: TransactionDao
-): TransactionAuthorizationRepository {
+    private val transactionDao: TransactionDao
+): TransactionRepository {
 
     override suspend fun postTransactionAuthorization(
         authorization: String,
@@ -30,7 +30,7 @@ class TransactionAuthorizationRepositoryImpl @Inject constructor(
         return result
     }
 
-    override fun storeTransaction(
+     override suspend fun storeTransaction(
         transactionAuthorizationBody: TransactionAuthorizationBody,
         authorizationResponse  : AuthorizationResponse
     ){
@@ -48,7 +48,15 @@ class TransactionAuthorizationRepositoryImpl @Inject constructor(
         )
 
         val roomEntity = Utils.generateTransactionRoomEntity(transaction)
-        transactionAuthorizationDao.insert(roomEntity)
+        transactionDao.insert(roomEntity)
 
     }
+
+    override suspend fun getTransactionsList(): ResultData<List<Transaction?>> {
+        val result =  transactionDao.getTransactionList().map {
+            generateTransactionModel(it)
+        }
+        return ResultData.Success(result)
+    }
+
 }

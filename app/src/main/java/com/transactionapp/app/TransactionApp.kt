@@ -1,4 +1,4 @@
-package com.transactionapp.app.framework
+package com.transactionapp.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
