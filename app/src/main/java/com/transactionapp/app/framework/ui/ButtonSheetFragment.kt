@@ -1,4 +1,4 @@
-package com.transactionapp.about.framework.ui
+package com.transactionapp.app.framework.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.transactionapp.R
 
-class AboutFragment : Fragment() {
+class ButtonSheetFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -25,7 +25,7 @@ class AboutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        return inflater.inflate(R.layout.fragment_button_sheet, container, false)
     }
 
     companion object {
@@ -33,7 +33,7 @@ class AboutFragment : Fragment() {
         private const val ARG_PARAM2 = "param2"
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            AboutFragment().apply {
+            ButtonSheetFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -1,4 +1,4 @@
-package com.transactionapp.base.framework.di
+package com.transactionapp.app.framework.di
 
 import com.transactionapp.transactionannulment.data.TransactionAnnulmentRepositoryImpl
 import com.transactionapp.transactionannulment.usecase.PostTransactionAnnulmentUseCaseImpl
@@ -8,7 +8,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Inject
 
 @Module
 @InstallIn(SingletonComponent::class)

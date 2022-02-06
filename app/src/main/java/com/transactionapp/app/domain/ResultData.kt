@@ -1,4 +1,4 @@
-package com.transactionapp.base.domain
+package com.transactionapp.app.domain
 
 sealed class ResultData<T>{
     data class Success<T>(val value:T): ResultData<T>()

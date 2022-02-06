@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.transactionapp.base.domain.ResultData
-import com.transactionapp.base.framework.restapi.model.TransactionAnnulmentBody
+import com.transactionapp.app.domain.ResultData
+import com.transactionapp.app.framework.restapi.model.TransactionAnnulmentBody
 import com.transactionapp.transactionannulment.domain.AnnulmentResponse
 import com.transactionapp.transactionannulment.usecase.PostTransactionAnnulmentUseCaseImpl
-import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

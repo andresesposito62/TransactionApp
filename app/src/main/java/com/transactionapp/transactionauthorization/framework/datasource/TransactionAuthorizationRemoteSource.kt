@@ -1,7 +1,7 @@
 package com.transactionapp.transactionauthorization.framework.datasource
 
-import com.transactionapp.base.domain.ResultData
-import com.transactionapp.base.framework.restapi.model.TransactionAuthorizationBody
+import com.transactionapp.app.domain.ResultData
+import com.transactionapp.app.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 
 interface TransactionAuthorizationRemoteSource {

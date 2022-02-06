@@ -1,4 +1,4 @@
-package com.transactionapp.base.framework.restapi.model
+package com.transactionapp.app.framework.restapi.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

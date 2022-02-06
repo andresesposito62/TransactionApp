@@ -1,7 +1,7 @@
 package com.transactionapp.transactionauthorization.usecase
 
-import com.transactionapp.base.domain.ResultData
-import com.transactionapp.base.framework.restapi.model.TransactionAuthorizationBody
+import com.transactionapp.app.domain.ResultData
+import com.transactionapp.app.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.transactionauthorization.data.TransactionAuthorizationRepositoryImpl
 import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 import io.reactivex.Single

@@ -1,7 +1,7 @@
 package com.transactionapp.transactionannulment.usecase
 
-import com.transactionapp.base.domain.ResultData
-import com.transactionapp.base.framework.restapi.model.TransactionAnnulmentBody
+import com.transactionapp.app.domain.ResultData
+import com.transactionapp.app.framework.restapi.model.TransactionAnnulmentBody
 import com.transactionapp.transactionannulment.domain.AnnulmentResponse
 import io.reactivex.Single
 

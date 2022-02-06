@@ -1,4 +1,4 @@
-package com.transactionapp.base.framework.restapi
+package com.transactionapp.app.framework.restapi
 
 class ServicesEndPoints {
     companion object{

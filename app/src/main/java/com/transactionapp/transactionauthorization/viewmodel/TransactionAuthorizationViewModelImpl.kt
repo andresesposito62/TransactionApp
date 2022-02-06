@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.transactionapp.base.domain.ResultData
-import com.transactionapp.base.framework.restapi.model.TransactionAuthorizationBody
+import com.transactionapp.app.domain.ResultData
+import com.transactionapp.app.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 import com.transactionapp.transactionauthorization.usecase.PostTransactionAuthorizationUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,4 +1,4 @@
-package com.transactionapp.base.framework.di
+package com.transactionapp.app.framework.di
 
 import com.transactionapp.transactionauthorization.usecase.PostTransactionAuthorizationUseCaseImpl
 import com.transactionapp.transactionauthorization.viewmodel.TransactionAuthorizationViewModelImpl

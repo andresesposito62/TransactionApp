@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.transactionapp.base.framework.restapi.model.TransactionAuthorizationBody
+import com.transactionapp.app.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.databinding.FragmentTransactionAuthorizationBinding
 import com.transactionapp.transactionauthorization.viewmodel.TransactionAuthorizationViewModelImpl
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,11 +1,9 @@
 package com.transactionapp.transactionannulment.framework.datasource
 
-import com.transactionapp.base.domain.ResultData
-import com.transactionapp.base.framework.restapi.ServicesRestApi
-import com.transactionapp.base.framework.restapi.model.TransactionAnnulmentBody
-import com.transactionapp.base.framework.restapi.model.TransactionAuthorizationBody
+import com.transactionapp.app.domain.ResultData
+import com.transactionapp.app.framework.restapi.ServicesRestApi
+import com.transactionapp.app.framework.restapi.model.TransactionAnnulmentBody
 import com.transactionapp.transactionannulment.domain.AnnulmentResponse
-import com.transactionapp.transactionauthorization.domain.AuthorizationResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
