@@ -53,7 +53,7 @@ class TransactionAuthorizationViewModelImpl @Inject constructor(
     }
 
     override fun setErrorTransactionAuthorization(throwable: Throwable) {
-        transactionAuthorizationError.postValue(throwable.stackTraceToString())
+        transactionAuthorizationError.postValue(throwable.message)
     }
 
     override fun setTransactionAuthorizationData(value: AuthorizationResponse?) {

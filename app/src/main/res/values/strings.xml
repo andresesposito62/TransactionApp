@@ -7,4 +7,14 @@
     <string name="mostrar_Transacciones">Mostrar</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="transaction_autorization_title">AUTORIZACIÓN DE TRANSACCIÓN</string>
+    <string name="commerce_code">Código de comercio</string>
+    <string name="terminal_code">Código de terminal</string>
+    <string name="amount">Monto</string>
+    <string name="card_number">Número de la tarjeta</string>
+    <string name="autorization_button_text">Autorizar</string>
+    <string name="success_transaction_authorization">Transacción autorizada!</string>
+    <string name="failure_transaction_authorization">Ups…Lo sentimos, algo ha ido mal!</string>
+    <string name="details_text">¿Desea ver los detalles de la transacción?</string>
+    <string name="decline_text">No</string>
+    <string name="go_text">Ver</string>
 </resources>
