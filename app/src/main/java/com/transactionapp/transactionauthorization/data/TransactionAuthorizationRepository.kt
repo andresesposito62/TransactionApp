@@ -10,4 +10,9 @@ interface TransactionAuthorizationRepository {
         authorization: String,
         transactionAuthorizationBody: TransactionAuthorizationBody
     ): ResultData<AuthorizationResponse?>
+
+    fun storeTransaction(
+        transactionAuthorizationBody: TransactionAuthorizationBody,
+        authorizationResponse  : AuthorizationResponse
+    )
 }

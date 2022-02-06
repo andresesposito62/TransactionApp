@@ -1,10 +1,11 @@
 package com.transactionapp.transactionauthorization.domain
 
+import androidx.annotation.NonNull
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Transaction (
-    @SerializedName("id") var id: String? = null,
+    @SerializedName("transactionId") var transactionId: String? = null,
     @SerializedName("commerceCode") var commerceCode: String? = null,
     @SerializedName("terminalCode") var terminalCode: String? = null,
     @SerializedName("amount") var amount: String? = null,
