@@ -6,4 +6,5 @@
     <string name="buscar_transaccion">Buscar</string>
     <string name="mostrar_Transacciones">Mostrar</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="transaction_autorization_title">AUTORIZACIÓN DE TRANSACCIÓN</string>
 </resources>

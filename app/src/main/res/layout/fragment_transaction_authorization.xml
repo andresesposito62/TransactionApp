@@ -2,17 +2,38 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/view_container_transaction_authorization"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".transactionauthorization.framework.ui.TransactionAuthorizationFragment">
+        android:orientation="vertical"
+        android:background="@color/white">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:id="@+id/text_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="TransactionAuthorizationFragment" />
+        <!--
+        <include
+            android:id="@+id/offline"
+            layout="@/view_offline"
+            android:visibility="gone"/>
+        -->
 
-    </FrameLayout>
+        <LinearLayout
+            android:id="@+id/transaction_content"
+            style="@style/ContainerPrimary">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/style_titles"
+                android:text="@string/transaction_autorization_title"/>
+
+            <TextView
+                android:id="@+id/text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="TransactionAuthorizationFragment" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </layout>
