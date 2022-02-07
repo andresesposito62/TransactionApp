@@ -27,11 +27,11 @@ class SearchTransactionFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity())[SearchTransactionViewModelImpl::class.java]
 
         viewModel.transactionErrorLiveData.observe(viewLifecycleOwner) {
-            binding.textView.text = it
+            //binding.textView.text = it
         }
 
         viewModel.transactionResultLiveData.observe(viewLifecycleOwner) {
-            binding.textView.text = it.toString()
+            //binding.textView.text = it.toString()
         }
 
         _binding = FragmentSearchTransactionBinding.inflate(inflater, container, false)

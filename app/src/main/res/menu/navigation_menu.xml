@@ -15,8 +15,4 @@
         android:title="@string/buscar_transaccion"
         android:icon="@drawable/ic_find_in_page"
         android:enabled="true"/>
-    <item android:id="@+id/action_anulacion_de_transaccion"
-        android:title="@string/anulacion_de_transaccion"
-        android:icon="@drawable/ic_cancel"
-        android:enabled="true"/>
 </menu>

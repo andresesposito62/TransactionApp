@@ -27,6 +27,8 @@ class ShowTransactionsFragment : Fragment(), TransactionsAdapter.OnTransactionCl
     private lateinit var navController: NavController
     private lateinit var linearLayoutManager: LinearLayoutManager
 
+    private var itemPositionDeleted: Int? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,6 +57,7 @@ class ShowTransactionsFragment : Fragment(), TransactionsAdapter.OnTransactionCl
 
         viewModel.transactionAnnulmentResultLiveData.observe(viewLifecycleOwner) {
             //binding.textView.text = it.toString()
+            itemPositionDeleted?.let { it1 -> binding.recyclerView.adapter?.notifyItemRemoved(it1) }
         }
 
         _binding = FragmentListTransactionBinding.inflate(inflater, container, false)
@@ -98,10 +101,12 @@ class ShowTransactionsFragment : Fragment(), TransactionsAdapter.OnTransactionCl
         binding.viewShowTransactions.alpha = 1.0F
     }
 
-    override fun onItemClick(transaction: Transaction) {
+    override fun onItemClick(transaction: Transaction, itemPosition: Int) {
+
         //val bundle = bundleOf("movie" to movie)
         //el objeto va a llegar del flujo de navegacion que tenemos hacia el dialogo detalle de pelicula
         //findNavController().navigate(R.id.MovieDetailDialog, bundle)
+        itemPositionDeleted = itemPosition
         val authorization = "Basic MDAwMTIzMDAwQUJD"
         viewModel.onPostTransactionAnnulment(authorization, TransactionAnnulmentBody(transaction.receiptId, transaction.rrn))
     }

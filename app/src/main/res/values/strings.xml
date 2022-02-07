@@ -4,6 +4,7 @@
     <string name="autorizacion_de_transaccion">Autorizar</string>
     <string name="anulacion_de_transaccion">Anular</string>
     <string name="buscar_transaccion">Buscar</string>
+    <string name="buscar_transaccion_title">BUSCAR TRANSACCIÓN</string>
     <string name="mostrar_Transacciones">Mostrar</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="transaction_autorization_title">AUTORIZACIÓN DE TRANSACCIÓN</string>
@@ -20,4 +21,5 @@
     <string name="transaccion_title">TRANSACCIÓN</string>
     <string name="delete_transaction_text">Borrar transacción</string>
     <string name="not_transaction_available_text">Aún no posees transacciones</string>
+    <string name="receiptId_text">Id de recibo</string>
 </resources>

@@ -11,7 +11,7 @@ import com.transactionapp.app.domain.Transaction
 class TransactionsAdapter(private val dataSet: List<Transaction>, private val itemClickListener: OnTransactionClickListener) : RecyclerView.Adapter<TransacionsViewHolder>() {
 
     interface OnTransactionClickListener{
-        fun onItemClick(transaction: Transaction)
+        fun onItemClick(transaction: Transaction, itemPosition: Int)
     }
 
     // Create new views (invoked by the layout manager)
@@ -40,7 +40,7 @@ class TransactionsAdapter(private val dataSet: List<Transaction>, private val it
         transacionsViewHolder.statusDescription.text = "Descripción de estatus: \n" + dataSet[position].statusDescription ?: ""
 
         transacionsViewHolder.deleteTransactionButton.setOnClickListener {
-            itemClickListener.onItemClick(dataSet[position])
+            itemClickListener.onItemClick(dataSet[position], position)
         }
     }
 
