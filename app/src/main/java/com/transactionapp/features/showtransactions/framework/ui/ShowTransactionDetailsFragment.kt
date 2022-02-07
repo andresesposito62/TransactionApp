@@ -14,7 +14,7 @@ import com.transactionapp.app.domain.Transaction
 import com.transactionapp.app.framework.restapi.model.TransactionAnnulmentBody
 import com.transactionapp.databinding.FragmentShowTransactionDetailsBinding
 import com.transactionapp.features.showtransactions.viewmodel.ShowTransactionsViewModelImpl
-
+import com.transactionapp.features.transactionannulment.viewmodel.TransactionAnnulmentViewModelImpl
 
 class ShowTransactionDetailsFragment : Fragment() {
 
@@ -23,7 +23,7 @@ class ShowTransactionDetailsFragment : Fragment() {
 
     var transactionToShow: Transaction? = null
 
-    lateinit var viewModel: ShowTransactionsViewModelImpl
+    lateinit var viewModel: TransactionAnnulmentViewModelImpl
 
     private var alertDialog:  AlertDialog? = null
 
@@ -31,7 +31,7 @@ class ShowTransactionDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(requireActivity())[ShowTransactionsViewModelImpl::class.java]
+        viewModel = ViewModelProvider(requireActivity())[TransactionAnnulmentViewModelImpl::class.java]
         transactionToShow = arguments?.getSerializable("transaction") as Transaction
 
         viewModel.transactionAnnulmentErrorLiveData.observe(viewLifecycleOwner) {
@@ -50,6 +50,7 @@ class ShowTransactionDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.transaccionDetails.deleteView.visibility = View.VISIBLE
+        alertDialog?.cancel()
 
         binding.transaccionDetails.deleteTransactionButton.setOnClickListener {
             setLoader()
@@ -103,7 +104,6 @@ class ShowTransactionDetailsFragment : Fragment() {
                 .setTitle("Transacción eliminada!")
                 .setMessage("La transacción ya no se encuentra en el sistema")
                 .setPositiveButton("OK") { dialog, which ->
-                    dialog.cancel()
                     findNavController().popBackStack()
                 }
                 .show()
@@ -124,7 +124,6 @@ class ShowTransactionDetailsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
         alertDialog?.cancel()
     }
 

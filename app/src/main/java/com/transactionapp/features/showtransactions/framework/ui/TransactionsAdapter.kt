@@ -9,26 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.transactionapp.R
 import com.transactionapp.app.domain.Transaction
 
-class TransactionsAdapter(private val dataSet: List<Transaction>, private val itemClickListener: OnTransactionClickListener) : RecyclerView.Adapter<TransacionsViewHolder>() {
+class TransactionsAdapter(private val dataSet: List<Transaction>) : RecyclerView.Adapter<TransacionsViewHolder>() {
 
-    interface OnTransactionClickListener{
-        fun onItemClick(transaction: Transaction, itemPosition: Int)
-    }
-
-    // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): TransacionsViewHolder {
-        // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.transaction_details_card, viewGroup, false)
 
         return TransacionsViewHolder(view)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(transacionsViewHolder: TransacionsViewHolder, position: Int) {
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
         transacionsViewHolder.transactionId.text = dataSet[position].transactionId ?: ""
         transacionsViewHolder.commerceCode.text = dataSet[position].commerceCode ?: ""
         transacionsViewHolder.terminalCode.text = dataSet[position].terminalCode ?: ""
@@ -40,7 +31,6 @@ class TransactionsAdapter(private val dataSet: List<Transaction>, private val it
         transacionsViewHolder.statusDescription.text = dataSet[position].statusDescription ?: ""
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
 
 }

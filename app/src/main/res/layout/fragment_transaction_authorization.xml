@@ -92,7 +92,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/autorizationButton"
+                android:id="@+id/autorizationButtonRequest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/autorization_button_text"

@@ -63,7 +63,8 @@ class TransactionAuthorizationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.autorizationButton.setOnClickListener {
+        alertDialog?.cancel()
+        binding.autorizationButtonRequest.setOnClickListener {
             setLoader()
             val authorization = "Basic MDAwMTIzMDAwQUJD"
             val uniqueId = UUID.randomUUID().toString()
@@ -80,6 +81,7 @@ class TransactionAuthorizationFragment : Fragment() {
                 transaction.terminalCode,
                 transaction.amount ,
                 transaction.cardNumber)
+
             viewModel.onPostTransactionAuthorization(authorization, authorizationBody)
         }
     }
@@ -101,10 +103,13 @@ class TransactionAuthorizationFragment : Fragment() {
                 .setTitle(resources.getString(R.string.success_transaction_authorization))
                 .setMessage(resources.getString(R.string.details_text))
                 .setNegativeButton(resources.getString(R.string.decline_text)) { dialog, which ->
-                    // Respond to negative button press
+                    binding.commerceCode.editText?.text?.clear()
+                    binding.terminalCode.editText?.text?.clear()
+                    binding.amount.editText?.text?.clear()
+                    binding.cardNumber.editText?.text?.clear()
+                    binding.cardNumber.editText?.clearFocus()
                 }
                 .setPositiveButton(resources.getString(R.string.go_text)) { dialog, which ->
-
                     transaction.receiptId = authorizationResponse.receiptId ?: ""
                     transaction.rrn = authorizationResponse.rrn ?: ""
                     transaction.statusCode = authorizationResponse.statusCode ?: ""
@@ -119,7 +124,7 @@ class TransactionAuthorizationFragment : Fragment() {
 
     private fun setFailureDialog(message: String){
         discardLoader()
-        context?.let {
+        alertDialog = context?.let {
             MaterialAlertDialogBuilder(it)
                 .setTitle(resources.getString(R.string.failure_transaction_authorization))
                 .setMessage("Error:$message")
@@ -129,7 +134,6 @@ class TransactionAuthorizationFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
         alertDialog?.cancel()
     }
 }

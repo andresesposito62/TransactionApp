@@ -23,9 +23,7 @@ object ViewModelModule {
     @Provides
     fun showTransactionsViewModelProvide(
         getTransactionsUseCaseImpl: GetTransactionsUseCaseImpl,
-        postTransactionAnnulmentUseCase: PostTransactionAnnulmentUseCaseImpl
-    ) = ShowTransactionsViewModelImpl(getTransactionsUseCaseImpl,
-        postTransactionAnnulmentUseCase)
+    ) = ShowTransactionsViewModelImpl(getTransactionsUseCaseImpl)
 
     @Provides
     fun searchTransactionViewModelProvide(
