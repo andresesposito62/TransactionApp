@@ -30,7 +30,11 @@
         android:id="@+id/listTransactionFragment"
         android:name="com.transactionapp.features.showtransactions.framework.ui.ShowTransactionsFragment"
         android:label="fragment_list_transaction"
-        tools:layout="@layout/fragment_list_transaction" />
+        tools:layout="@layout/fragment_list_transaction" >
+        <action
+            android:id="@+id/action_listTransactionFragment_to_noTransactionsAvailableFragment"
+            app:destination="@id/noTransactionsAvailableFragment" />
+    </fragment>
     <fragment
         android:id="@+id/transactionAnnulmentFragment"
         android:name="com.transactionapp.features.transactionannulment.framework.ui.TransactionAnnulmentFragment"
@@ -51,4 +55,8 @@
         android:name="com.transactionapp.app.ui.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/noTransactionsAvailableFragment"
+        android:name="com.transactionapp.features.showtransactions.framework.ui.NoTransactionsAvailableFragment"
+        android:label="NoTransactionsAvailableFragment" />
 </navigation>

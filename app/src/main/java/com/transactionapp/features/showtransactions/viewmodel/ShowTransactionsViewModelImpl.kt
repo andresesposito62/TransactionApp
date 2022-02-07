@@ -51,8 +51,6 @@ class ShowTransactionsViewModelImpl @Inject constructor(
     }
 
     override fun setTransactionListData(value: List<Transaction?>) {
-        if (!value.isNullOrEmpty()){
-            transactionListResult.postValue(value as List<Transaction>?)
-        }
+        transactionListResult.postValue(value as List<Transaction>?)
     }
 }
