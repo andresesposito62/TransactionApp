@@ -12,7 +12,7 @@ object Utils {
             transaction?.commerceCode,
             transaction?.terminalCode,
             transaction?.amount,
-            transaction?.card,
+            transaction?.cardNumber,
             transaction?.receiptId,
             transaction?.rrn,
             transaction?.statusCode,

@@ -68,7 +68,6 @@ class TransactionAuthorizationFragment : Fragment() {
         binding.viewContainerTransactionAuthorization.alpha = 1.0F
     }
 
-
     private fun setSuccessDialog(){
         discardLoader()
         context?.let {

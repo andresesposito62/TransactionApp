@@ -17,4 +17,6 @@
     <string name="details_text">¿Desea ver los detalles de la transacción?</string>
     <string name="decline_text">No</string>
     <string name="go_text">Ver</string>
+    <string name="transaccion_title">TRANSACCIÓN</string>
+    <string name="delete_transaction_text">Borrar transacción</string>
 </resources>
