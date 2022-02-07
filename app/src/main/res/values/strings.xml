@@ -20,6 +20,8 @@
     <string name="go_text">Ver</string>
     <string name="transaccion_title">TRANSACCIÓN</string>
     <string name="delete_transaction_text">Borrar transacción</string>
-    <string name="not_transaction_available_text">Aún no posees transacciones</string>
+    <string name="not_transactions_available_text">Aún no posees transacciones</string>
     <string name="receiptId_text">Id de recibo</string>
+    <string name="not_transactions_found_text">Transacción no encontrada</string>
+    <string name="transaction_found_success">Transacción encontrada!</string>
 </resources>

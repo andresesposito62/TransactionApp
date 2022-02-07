@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.transactionapp.R
+import com.transactionapp.app.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.databinding.FragmentListTransactionBinding
 import com.transactionapp.databinding.FragmentSearchTransactionBinding
 import com.transactionapp.features.searchtransaction.viewmodel.SearchTransactionViewModelImpl
 import com.transactionapp.features.showtransactions.viewmodel.ShowTransactionsViewModelImpl
+import java.util.*
 
 class SearchTransactionFragment : Fragment() {
 
@@ -27,11 +30,15 @@ class SearchTransactionFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity())[SearchTransactionViewModelImpl::class.java]
 
         viewModel.transactionErrorLiveData.observe(viewLifecycleOwner) {
-            //binding.textView.text = it
+            setFailureDialog(it)
         }
 
         viewModel.transactionResultLiveData.observe(viewLifecycleOwner) {
-            //binding.textView.text = it.toString()
+            if (it.transactionId != null){
+                setSuccessDialog()
+            }else{
+                setFailureDialog("Lo sentimos, no ha sido posible encontrar la transaccion solicitada" )
+            }
         }
 
         _binding = FragmentSearchTransactionBinding.inflate(inflater, container, false)
@@ -41,7 +48,49 @@ class SearchTransactionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.onGetTransaction("b8711bc4-bede-448c-9c9d-9a9ea59420c3")
+        binding.searchButton.setOnClickListener {
+            val receiptId = binding.receiptIdEditText.editText?.text?.trim().toString() ?: ""
+            if (receiptId.isNotEmpty()){
+                setLoader()
+                viewModel.onGetTransaction(receiptId)
+            }
+        }
+    }
+
+    private fun setLoader(){
+        binding.loaderView.visibility = View.VISIBLE
+        binding.viewContainerTransactionAuthorization.alpha = 0.5F
+    }
+
+    private fun discardLoader(){
+        binding.loaderView.visibility = View.INVISIBLE
+        binding.viewContainerTransactionAuthorization.alpha = 1.0F
+    }
+
+    private fun setSuccessDialog(){
+        discardLoader()
+        context?.let {
+            MaterialAlertDialogBuilder(it)
+                .setTitle(resources.getString(R.string.transaction_found_success))
+                .setMessage(resources.getString(R.string.details_text))
+                .setNegativeButton(resources.getString(R.string.decline_text)) { dialog, which ->
+                    // Respond to negative button press
+                }
+                .setPositiveButton(resources.getString(R.string.go_text)) { dialog, which ->
+                    // Respond to positive button press
+                }
+                .show()
+        }
+    }
+
+    private fun setFailureDialog(message: String){
+        discardLoader()
+        context?.let {
+            MaterialAlertDialogBuilder(it)
+                .setTitle(resources.getString(R.string.not_transactions_found_text))
+                .setMessage(message)
+                .show()
+        }
     }
 
 }
