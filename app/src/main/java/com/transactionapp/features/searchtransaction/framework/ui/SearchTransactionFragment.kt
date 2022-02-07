@@ -39,7 +39,7 @@ class SearchTransactionFragment : Fragment() {
             if (it.transactionId != null){
                 setSuccessDialog(it)
             }else{
-                setFailureDialog("Lo sentimos, no ha sido posible encontrar la transaccion solicitada" )
+                setFailureDialog(resources.getString(R.string.transaction_not_found_text))
             }
         }
 
@@ -81,7 +81,7 @@ class SearchTransactionFragment : Fragment() {
                     binding.receiptIdEditText.editText?.clearFocus()
                 }
                 .setPositiveButton(resources.getString(R.string.go_text)) { dialog, which ->
-                    val bundle = bundleOf("transaction" to transaction)
+                    val bundle = bundleOf(TRANSACTION to transaction)
                     findNavController().navigate(R.id.showTransactionDetailsFragment, bundle)
                 }
                 .show()
@@ -101,6 +101,10 @@ class SearchTransactionFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         alertDialog?.cancel()
+    }
+
+    companion object{
+        const val TRANSACTION = "transaction"
     }
 
 }

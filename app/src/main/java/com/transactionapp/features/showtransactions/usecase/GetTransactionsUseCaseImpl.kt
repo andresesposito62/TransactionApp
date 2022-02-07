@@ -16,5 +16,4 @@ class GetTransactionsUseCaseImpl(
             is ResultData.Failure<*> -> Single.just(result)
         }
     }
-
 }

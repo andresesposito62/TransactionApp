@@ -3,7 +3,6 @@ package com.transactionapp.app.framework.di
 import com.transactionapp.features.searchtransaction.viewmodel.SearchTransactionViewModelImpl
 import com.transactionapp.features.showtransactions.usecase.GetTransactionsUseCaseImpl
 import com.transactionapp.features.showtransactions.viewmodel.ShowTransactionsViewModelImpl
-import com.transactionapp.features.transactionannulment.usecase.PostTransactionAnnulmentUseCaseImpl
 import com.transactionapp.features.transactionauthorization.usecase.PostTransactionAuthorizationUseCaseImpl
 import com.transactionapp.features.transactionauthorization.viewmodel.TransactionAuthorizationViewModelImpl
 import dagger.Module

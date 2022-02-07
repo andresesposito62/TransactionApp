@@ -14,17 +14,11 @@
             android:id="@+id/action_homeFragment_to_listTransactionFragment"
             app:destination="@id/listTransactionFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_transactionAnnulmentFragment"
-            app:destination="@id/transactionAnnulmentFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_searchTransactionFragment"
             app:destination="@id/searchTransactionFragment" />
         <action
             android:id="@+id/action_homeFragment_to_transactionAuthorizationFragment"
             app:destination="@id/transactionAuthorizationFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_aboutFragment"
-            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/listTransactionFragment"
@@ -35,11 +29,6 @@
             android:id="@+id/action_listTransactionFragment_to_noTransactionsAvailableFragment"
             app:destination="@id/noTransactionsAvailableFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/transactionAnnulmentFragment"
-        android:name="com.transactionapp.features.transactionannulment.framework.ui.TransactionAnnulmentFragment"
-        android:label="fragment_transaction_annulment"
-        tools:layout="@layout/fragment_transaction_annulment" />
     <fragment
         android:id="@+id/searchTransactionFragment"
         android:name="com.transactionapp.features.searchtransaction.framework.ui.SearchTransactionFragment"
@@ -53,12 +42,14 @@
         android:id="@+id/transactionAuthorizationFragment"
         android:name="com.transactionapp.features.transactionauthorization.framework.ui.TransactionAuthorizationFragment"
         android:label="fragment_transaction_authorization"
-        tools:layout="@layout/fragment_transaction_authorization" />
-    <fragment
-        android:id="@+id/aboutFragment"
-        android:name="com.transactionapp.app.ui.AboutFragment"
-        android:label="fragment_about"
-        tools:layout="@layout/fragment_about" />
+        tools:layout="@layout/fragment_transaction_authorization" >
+        <action
+            android:id="@+id/action_transactionAuthorizationFragment_to_showTransactionDetailsFragment2"
+            app:destination="@id/showTransactionDetailsFragment" />
+        <action
+            android:id="@+id/action_transactionAuthorizationFragment_to_listTransactionFragment"
+            app:destination="@id/listTransactionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/noTransactionsAvailableFragment"
         android:name="com.transactionapp.features.showtransactions.framework.ui.NoTransactionsAvailableFragment"

@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">TransactionApp</string>
     <string name="home">Home</string>
-    <string name="autorizacion_de_transaccion">Autorizar</string>
+    <string name="action_transaction_authorization">Autorizar</string>
     <string name="anulacion_de_transaccion">Anular</string>
-    <string name="buscar_transaccion">Buscar</string>
+    <string name="action_search_transaction">Buscar</string>
     <string name="buscar_transaccion_title">BUSCAR TRANSACCIÓN</string>
-    <string name="mostrar_Transacciones">Mostrar</string>
+    <string name="action_show_transaccions">Mostrar</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="transaction_autorization_title">AUTORIZACIÓN DE TRANSACCIÓN</string>
     <string name="commerce_code">Código de comercio</string>
@@ -34,5 +34,10 @@
     <string name="rrn_text_detail">Rrn:</string>
     <string name="status_code_text_detail">Código de Status:</string>
     <string name="description_status_text_detail">Descripción de estatus:</string>
+    <string name="transaction_not_found_text">Lo sentimos, no ha sido posible encontrar la transaccion solicitada</string>
+    <string name="transaction_deleted">Transacción eliminada!</string>
+    <string name="transaction_has_been_deleted">La transacción ya no se encuentra en el sistema</string>
+    <string name="transaction_not_deleted">Lo sentimos…No ha sido posible eliminar la transacción</string>
+
 
 </resources>

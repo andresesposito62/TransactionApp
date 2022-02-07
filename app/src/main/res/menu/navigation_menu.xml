@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:id="@+id/action_mostrar_Transacciones"
-        android:title="@string/mostrar_Transacciones"
+    <item android:id="@+id/action_show_transaccions"
+        android:title="@string/action_show_transaccions"
         android:icon="@drawable/ic_view_list"
         android:enabled="true"/>
-    <item android:id="@+id/action_autorizacion_de_transaccion"
-        android:title="@string/autorizacion_de_transaccion"
+    <item android:id="@+id/action_transaction_authorization"
+        android:title="@string/action_transaction_authorization"
         android:icon="@drawable/ic_assignment_turned_in"
         android:enabled="true"/>
-    <item android:id="@+id/action_buscar_transaccion"
-        android:title="@string/buscar_transaccion"
+    <item android:id="@+id/action_search_transaction"
+        android:title="@string/action_search_transaction"
         android:icon="@drawable/ic_find_in_page"
         android:enabled="true"/>
 </menu>

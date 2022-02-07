@@ -22,13 +22,8 @@ import java.util.*
 @AndroidEntryPoint
 class TransactionAuthorizationFragment : Fragment() {
 
-    lateinit var viewModel: TransactionAuthorizationViewModelImpl
-
-    private var _binding: FragmentTransactionAuthorizationBinding? = null
-    private val binding get() = _binding!!
-
+    private lateinit var viewModel: TransactionAuthorizationViewModelImpl
     private var alertDialog:  AlertDialog? = null
-
     private var transaction = Transaction(
         "",
         "",
@@ -40,6 +35,9 @@ class TransactionAuthorizationFragment : Fragment() {
         "",
         ""
     )
+
+    private var _binding: FragmentTransactionAuthorizationBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,7 +64,6 @@ class TransactionAuthorizationFragment : Fragment() {
         alertDialog?.cancel()
         binding.autorizationButtonRequest.setOnClickListener {
             setLoader()
-            val authorization = "Basic MDAwMTIzMDAwQUJD"
             val uniqueId = UUID.randomUUID().toString()
 
             transaction.transactionId = uniqueId ?:""
@@ -82,18 +79,18 @@ class TransactionAuthorizationFragment : Fragment() {
                 transaction.amount ,
                 transaction.cardNumber)
 
-            viewModel.onPostTransactionAuthorization(authorization, authorizationBody)
+            viewModel.onPostTransactionAuthorization(AUTHORIZATION, authorizationBody)
         }
     }
 
     private fun setLoader(){
         binding.loaderView.visibility = View.VISIBLE
-        binding.viewContainerTransactionAuthorization.alpha = 0.5F
+        binding.viewContainerTransactionAuthorization.alpha = ALPHA_CONSTANT_HALF
     }
 
     private fun discardLoader(){
         binding.loaderView.visibility = View.INVISIBLE
-        binding.viewContainerTransactionAuthorization.alpha = 1.0F
+        binding.viewContainerTransactionAuthorization.alpha = ALPHA_CONSTANT
     }
 
     private fun setSuccessDialog(authorizationResponse: AuthorizationResponse){
@@ -115,7 +112,7 @@ class TransactionAuthorizationFragment : Fragment() {
                     transaction.statusCode = authorizationResponse.statusCode ?: ""
                     transaction.statusDescription = authorizationResponse.statusDescription ?: ""
 
-                    val bundle = bundleOf("transaction" to transaction)
+                    val bundle = bundleOf(TRANSACTION to transaction)
                     findNavController().navigate(R.id.showTransactionDetailsFragment, bundle)
                 }
                 .show()
@@ -127,7 +124,7 @@ class TransactionAuthorizationFragment : Fragment() {
         alertDialog = context?.let {
             MaterialAlertDialogBuilder(it)
                 .setTitle(resources.getString(R.string.failure_transaction_authorization))
-                .setMessage("Error:$message")
+                .setMessage(ERROR + message)
                 .show()
         }
     }
@@ -135,5 +132,13 @@ class TransactionAuthorizationFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         alertDialog?.cancel()
+    }
+
+    companion object{
+        const val TRANSACTION = "transaction"
+        const val ERROR = "Error:"
+        const val AUTHORIZATION = "Basic MDAwMTIzMDAwQUJD"
+        const val ALPHA_CONSTANT_HALF = 0.5F
+        const val ALPHA_CONSTANT = 1.0F
     }
 }

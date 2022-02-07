@@ -18,23 +18,18 @@ import com.transactionapp.features.showtransactions.viewmodel.ShowTransactionsVi
 
 class ShowTransactionsFragment : Fragment() {
 
-    lateinit var viewModel: ShowTransactionsViewModelImpl
+    private var alertDialog:  AlertDialog? = null
+    private lateinit var navController: NavController
+    private lateinit var viewModel: ShowTransactionsViewModelImpl
+    private lateinit var linearLayoutManager: LinearLayoutManager
 
     private var _binding: FragmentListTransactionBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var navController: NavController
-    private lateinit var linearLayoutManager: LinearLayoutManager
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-    private var alertDialog:  AlertDialog? = null
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
         val navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.nav_host_transaction_app) as NavHostFragment
         navController = navHostFragment.navController
-
         viewModel = ViewModelProvider(requireActivity())[ShowTransactionsViewModelImpl::class.java]
 
         viewModel.transactionListErrorLiveData.observe(viewLifecycleOwner) {
@@ -61,7 +56,6 @@ class ShowTransactionsFragment : Fragment() {
         setLoader()
         linearLayoutManager = LinearLayoutManager(context)
         binding.recyclerView.layoutManager = linearLayoutManager
-
         viewModel.onGetTransactionList("")
     }
 
@@ -76,24 +70,30 @@ class ShowTransactionsFragment : Fragment() {
         alertDialog = context?.let {
             MaterialAlertDialogBuilder(it)
                 .setTitle(resources.getString(R.string.failure_transaction_authorization))
-                .setMessage("Error:$message")
+                .setMessage(ERROR + message)
                 .show()
         }
     }
 
     private fun setLoader(){
         binding.loaderView.visibility = View.VISIBLE
-        binding.viewShowTransactions.alpha = 0.5F
+        binding.viewShowTransactions.alpha = ALPHA_CONSTANT_HALF
     }
 
     private fun discardLoader(){
         binding.loaderView.visibility = View.INVISIBLE
-        binding.viewShowTransactions.alpha = 1.0F
+        binding.viewShowTransactions.alpha = ALPHA_CONSTANT
     }
 
     override fun onResume() {
         super.onResume()
         alertDialog?.cancel()
         viewModel.onGetTransactionList("")
+    }
+
+    companion object{
+        const val ERROR = "Error:"
+        const val ALPHA_CONSTANT_HALF = 0.5F
+        const val ALPHA_CONSTANT = 1.0F
     }
 }

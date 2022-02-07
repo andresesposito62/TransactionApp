@@ -25,6 +25,4 @@ object LocalDataSourceModule {
     fun transactionDaoProvider(dataBase: AppDataBase): TransactionDao{
         return dataBase.getTransactionDao()
     }
-
-
 }

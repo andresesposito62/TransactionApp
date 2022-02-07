@@ -47,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
                 true
             }
             CANCEL_ACTION -> {
-                navController.navigate(R.id.transactionAnnulmentFragment)
+                //navController.navigate(R.id.transactionAnnulmentFragment)
                 true
             }
             else -> false

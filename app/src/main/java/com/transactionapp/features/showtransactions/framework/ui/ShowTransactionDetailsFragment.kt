@@ -13,26 +13,22 @@ import com.transactionapp.R
 import com.transactionapp.app.domain.Transaction
 import com.transactionapp.app.framework.restapi.model.TransactionAnnulmentBody
 import com.transactionapp.databinding.FragmentShowTransactionDetailsBinding
-import com.transactionapp.features.showtransactions.viewmodel.ShowTransactionsViewModelImpl
 import com.transactionapp.features.transactionannulment.viewmodel.TransactionAnnulmentViewModelImpl
 
 class ShowTransactionDetailsFragment : Fragment() {
 
+    private lateinit var viewModel: TransactionAnnulmentViewModelImpl
+    private var transactionToShow: Transaction? = null
+    private var alertDialog:  AlertDialog? = null
     private var _binding: FragmentShowTransactionDetailsBinding? = null
     private val binding get() = _binding!!
-
-    var transactionToShow: Transaction? = null
-
-    lateinit var viewModel: TransactionAnnulmentViewModelImpl
-
-    private var alertDialog:  AlertDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         viewModel = ViewModelProvider(requireActivity())[TransactionAnnulmentViewModelImpl::class.java]
-        transactionToShow = arguments?.getSerializable("transaction") as Transaction
+        transactionToShow = arguments?.getSerializable(KEY) as Transaction
 
         viewModel.transactionAnnulmentErrorLiveData.observe(viewLifecycleOwner) {
             setFailureDialog(it)
@@ -54,8 +50,8 @@ class ShowTransactionDetailsFragment : Fragment() {
 
         binding.transaccionDetails.deleteTransactionButton.setOnClickListener {
             setLoader()
-            val authorization = "Basic MDAwMTIzMDAwQUJD"
-            viewModel.onPostTransactionAnnulment(authorization, TransactionAnnulmentBody(transactionToShow?.receiptId, transactionToShow?.rrn))
+            viewModel.onPostTransactionAnnulment(
+                AUTHORIZATION, TransactionAnnulmentBody(transactionToShow?.receiptId, transactionToShow?.rrn))
         }
 
         binding.transaccionDetails.transacctionId.text = transactionToShow?.transactionId ?: resources.getString(R.string.not_transactions_found_text)
@@ -79,13 +75,12 @@ class ShowTransactionDetailsFragment : Fragment() {
         binding.viewShowTransactions.alpha = 1.0F
     }
 
-
     private fun setSuccessDialog(){
         discardLoader()
         alertDialog = context?.let {
             MaterialAlertDialogBuilder(it)
-                .setTitle("Transacción eliminada!")
-                .setMessage("La transacción ya no se encuentra en el sistema")
+                .setTitle(resources.getString(R.string.transaction_deleted))
+                .setMessage(resources.getString(R.string.transaction_has_been_deleted))
                 .setPositiveButton("OK") { dialog, which ->
                     findNavController().popBackStack()
                 }
@@ -98,10 +93,11 @@ class ShowTransactionDetailsFragment : Fragment() {
         discardLoader()
         alertDialog = context?.let {
             MaterialAlertDialogBuilder(it)
-                .setTitle("Lo sentimos...No da sido posible eliminar la transacción")
-                .setMessage("Error:$message")
+                .setTitle(resources.getString(R.string.transaction_not_deleted))
+                .setMessage(ERROR + message)
                 .show()
         }
+
         findNavController().navigate(R.id.noTransactionsAvailableFragment)
     }
 
@@ -110,4 +106,9 @@ class ShowTransactionDetailsFragment : Fragment() {
         alertDialog?.cancel()
     }
 
+    companion object{
+        const val KEY = "transaction"
+        const val AUTHORIZATION = "Basic MDAwMTIzMDAwQUJD"
+        const val ERROR = "Error:"
+    }
 }

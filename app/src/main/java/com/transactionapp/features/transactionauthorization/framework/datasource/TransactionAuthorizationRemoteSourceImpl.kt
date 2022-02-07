@@ -26,7 +26,7 @@ class TransactionAuthorizationRemoteSourceImpl @Inject constructor(
                 override fun onResponse(call: Call<AuthorizationResponse>,
                     response: Response<AuthorizationResponse>
                 ) {
-                    if (response.code() in 200..399){
+                    if (response.code() in MIN_CODE_SUCCESS..MAX_CODE_SUCCESS){
                         it.resume(ResultData.Success(response.body()!!))
                     }else{
                         it.resume(ResultData.Failure(Exception(response.code().toString())))
@@ -38,4 +38,8 @@ class TransactionAuthorizationRemoteSourceImpl @Inject constructor(
                 }
             })
         }
+    companion object{
+        const val MIN_CODE_SUCCESS = 200
+        const val MAX_CODE_SUCCESS = 399
+    }
 }

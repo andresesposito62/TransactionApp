@@ -19,25 +19,20 @@ class TransactionRepositoryImpl @Inject constructor(
     private val transactionAnnulmentRemoteSource: TransactionAnnulmentRemoteSourceImpl
 ): TransactionRepository {
 
-    override suspend fun postTransactionAuthorization(
-        authorization: String,
-        transactionAuthorizationBody: TransactionAuthorizationBody
-    ): ResultData<AuthorizationResponse?> {
+    override suspend fun postTransactionAuthorization(authorization: String, transactionAuthorizationBody: TransactionAuthorizationBody)
+        : ResultData<AuthorizationResponse?> {
 
-        val result = transactionAuthorizationRemoteSource
-                .postTransactionAuthorization(authorization, transactionAuthorizationBody)
-
+        val result = transactionAuthorizationRemoteSource.postTransactionAuthorization(authorization, transactionAuthorizationBody)
         when (result){
             is ResultData.Success<*> -> storeTransactionInDatabase(transactionAuthorizationBody, result.value as AuthorizationResponse)
         }
-
         return result
     }
 
      override suspend fun storeTransactionInDatabase(
-        transactionAuthorizationBody: TransactionAuthorizationBody,
-        authorizationResponse  : AuthorizationResponse
-    ){
+         transactionAuthorizationBody: TransactionAuthorizationBody,
+         authorizationResponse  : AuthorizationResponse){
+
         val transaction = Transaction(
             transactionAuthorizationBody.transactionId,
             transactionAuthorizationBody.commerceCode,
@@ -55,11 +50,8 @@ class TransactionRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getTransactionsList(receiptId: String): ResultData<List<Transaction?>> {
-
         return if (receiptId == ""){
-            val result =  transactionDao.getTransactionList().map {
-                generateTransactionModel(it)
-            }
+            val result =  transactionDao.getTransactionList().map { generateTransactionModel(it) }
             ResultData.Success(result)
         }else{
             val result = listOf(generateTransactionModel(transactionDao.getTransactionByReceiptId(receiptId)))
@@ -67,17 +59,13 @@ class TransactionRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun postTransactionAnnulment(
-        authorization: String,
-        transactionAnnulmentBody: TransactionAnnulmentBody
-    ): ResultData<AnnulmentResponse?> {
+    override suspend fun postTransactionAnnulment(authorization: String, transactionAnnulmentBody: TransactionAnnulmentBody)
+        : ResultData<AnnulmentResponse?> {
 
         val result = transactionAnnulmentRemoteSource.postTransactionAuthorization(authorization, transactionAnnulmentBody)
-
         when (result){
             is ResultData.Success<*> -> transactionAnnulmentBody.receiptId?.let { deleteTransactionOfDatabase(it) }
         }
-
         return result
     }
 
@@ -87,5 +75,4 @@ class TransactionRepositoryImpl @Inject constructor(
             transactionDao.deleteByReceiptId(transactionFound.receiptId!!)
         }
     }
-
 }
