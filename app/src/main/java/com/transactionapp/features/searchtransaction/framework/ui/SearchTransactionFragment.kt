@@ -5,9 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.transactionapp.R
+import com.transactionapp.app.domain.Transaction
 import com.transactionapp.app.framework.restapi.model.TransactionAuthorizationBody
 import com.transactionapp.databinding.FragmentListTransactionBinding
 import com.transactionapp.databinding.FragmentSearchTransactionBinding
@@ -22,6 +27,8 @@ class SearchTransactionFragment : Fragment() {
     private var _binding: FragmentSearchTransactionBinding? = null
     private val binding get() = _binding!!
 
+    private var alertDialog:  AlertDialog? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,7 +42,7 @@ class SearchTransactionFragment : Fragment() {
 
         viewModel.transactionResultLiveData.observe(viewLifecycleOwner) {
             if (it.transactionId != null){
-                setSuccessDialog()
+                setSuccessDialog(it)
             }else{
                 setFailureDialog("Lo sentimos, no ha sido posible encontrar la transaccion solicitada" )
             }
@@ -67,9 +74,9 @@ class SearchTransactionFragment : Fragment() {
         binding.viewContainerTransactionAuthorization.alpha = 1.0F
     }
 
-    private fun setSuccessDialog(){
+    private fun setSuccessDialog(transaction: Transaction){
         discardLoader()
-        context?.let {
+        alertDialog = context?.let {
             MaterialAlertDialogBuilder(it)
                 .setTitle(resources.getString(R.string.transaction_found_success))
                 .setMessage(resources.getString(R.string.details_text))
@@ -77,7 +84,8 @@ class SearchTransactionFragment : Fragment() {
                     // Respond to negative button press
                 }
                 .setPositiveButton(resources.getString(R.string.go_text)) { dialog, which ->
-                    // Respond to positive button press
+                    val bundle = bundleOf("transaction" to transaction)
+                    findNavController().navigate(R.id.showTransactionDetailsFragment, bundle)
                 }
                 .show()
         }
@@ -85,12 +93,18 @@ class SearchTransactionFragment : Fragment() {
 
     private fun setFailureDialog(message: String){
         discardLoader()
-        context?.let {
+        alertDialog = context?.let {
             MaterialAlertDialogBuilder(it)
                 .setTitle(resources.getString(R.string.not_transactions_found_text))
                 .setMessage(message)
                 .show()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        alertDialog?.cancel()
     }
 
 }

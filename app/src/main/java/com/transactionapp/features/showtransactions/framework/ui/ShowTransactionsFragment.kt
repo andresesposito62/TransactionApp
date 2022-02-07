@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -28,6 +29,7 @@ class ShowTransactionsFragment : Fragment(), TransactionsAdapter.OnTransactionCl
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     private var itemPositionDeleted: Int? = null
+    private var alertDialog:  AlertDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +48,7 @@ class ShowTransactionsFragment : Fragment(), TransactionsAdapter.OnTransactionCl
             discardLoader()
             if (it.isEmpty()){
                 navController.navigate(R.id.noTransactionsAvailableFragment)
-            }else{
+            } else{
                 setRecyclerView(it)
             }
         }
@@ -56,8 +58,7 @@ class ShowTransactionsFragment : Fragment(), TransactionsAdapter.OnTransactionCl
         }
 
         viewModel.transactionAnnulmentResultLiveData.observe(viewLifecycleOwner) {
-            //binding.textView.text = it.toString()
-            itemPositionDeleted?.let { it1 -> binding.recyclerView.adapter?.notifyItemRemoved(it1) }
+            viewModel.onGetTransactionList("")
         }
 
         _binding = FragmentListTransactionBinding.inflate(inflater, container, false)
@@ -71,7 +72,6 @@ class ShowTransactionsFragment : Fragment(), TransactionsAdapter.OnTransactionCl
         linearLayoutManager = LinearLayoutManager(context)
         binding.recyclerView.layoutManager = linearLayoutManager
 
-
         viewModel.onGetTransactionList("")
     }
 
@@ -83,7 +83,7 @@ class ShowTransactionsFragment : Fragment(), TransactionsAdapter.OnTransactionCl
 
     private fun setFailureDialog(message: String){
         discardLoader()
-        context?.let {
+        alertDialog = context?.let {
             MaterialAlertDialogBuilder(it)
                 .setTitle(resources.getString(R.string.failure_transaction_authorization))
                 .setMessage("Error:$message")
@@ -109,5 +109,10 @@ class ShowTransactionsFragment : Fragment(), TransactionsAdapter.OnTransactionCl
         itemPositionDeleted = itemPosition
         val authorization = "Basic MDAwMTIzMDAwQUJD"
         viewModel.onPostTransactionAnnulment(authorization, TransactionAnnulmentBody(transaction.receiptId, transaction.rrn))
+    }
+
+    override fun onResume() {
+        super.onResume()
+        alertDialog?.cancel()
     }
 }
