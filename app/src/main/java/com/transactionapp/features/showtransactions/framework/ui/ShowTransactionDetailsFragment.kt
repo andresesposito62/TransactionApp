@@ -58,32 +58,15 @@ class ShowTransactionDetailsFragment : Fragment() {
             viewModel.onPostTransactionAnnulment(authorization, TransactionAnnulmentBody(transactionToShow?.receiptId, transactionToShow?.rrn))
         }
 
-        binding.transaccionDetails.transacctionId.text =
-            transactionToShow?.transactionId ?: resources.getString(R.string.not_transactions_found_text)
-
-        binding.transaccionDetails.commerceCode.text =
-            transactionToShow?.commerceCode ?: resources.getString(R.string.not_transactions_found_text)
-
-        binding.transaccionDetails.terminalCode.text =
-            transactionToShow?.terminalCode ?: resources.getString(R.string.not_transactions_found_text)
-
-        binding.transaccionDetails.amount.text =
-            transactionToShow?.amount ?: resources.getString(R.string.not_transactions_found_text)
-
-        binding.transaccionDetails.cardNumber.text =
-            transactionToShow?.cardNumber ?: resources.getString(R.string.not_transactions_found_text)
-
-        binding.transaccionDetails.receiptId.text =
-            transactionToShow?.receiptId ?: resources.getString(R.string.not_transactions_found_text)
-
-        binding.transaccionDetails.rrn.text =
-            transactionToShow?.rrn ?: resources.getString(R.string.not_transactions_found_text)
-
-        binding.transaccionDetails.statusCode.text =
-            transactionToShow?.statusCode ?: resources.getString(R.string.not_transactions_found_text)
-
-        binding.transaccionDetails.statusDescription.text =
-            transactionToShow?.statusDescription ?: resources.getString(R.string.not_transactions_found_text)
+        binding.transaccionDetails.transacctionId.text = transactionToShow?.transactionId ?: resources.getString(R.string.not_transactions_found_text)
+        binding.transaccionDetails.commerceCode.text = transactionToShow?.commerceCode ?: resources.getString(R.string.not_transactions_found_text)
+        binding.transaccionDetails.terminalCode.text = transactionToShow?.terminalCode ?: resources.getString(R.string.not_transactions_found_text)
+        binding.transaccionDetails.amount.text = transactionToShow?.amount ?: resources.getString(R.string.not_transactions_found_text)
+        binding.transaccionDetails.cardNumber.text = transactionToShow?.cardNumber ?: resources.getString(R.string.not_transactions_found_text)
+        binding.transaccionDetails.receiptId.text = transactionToShow?.receiptId ?: resources.getString(R.string.not_transactions_found_text)
+        binding.transaccionDetails.rrn.text = transactionToShow?.rrn ?: resources.getString(R.string.not_transactions_found_text)
+        binding.transaccionDetails.statusCode.text = transactionToShow?.statusCode ?: resources.getString(R.string.not_transactions_found_text)
+        binding.transaccionDetails.statusDescription.text = transactionToShow?.statusDescription ?: resources.getString(R.string.not_transactions_found_text)
     }
 
     private fun setLoader(){

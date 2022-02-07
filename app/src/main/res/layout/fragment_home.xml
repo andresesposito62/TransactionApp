@@ -2,16 +2,27 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/containerHomeView"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".app.ui.HomeFragment">
+        android:gravity="center">
 
-        <!-- TODO: Update blank fragment layout -->
+        <!-- Media -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_android_100"
+            android:scaleType="centerCrop"
+            />
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Home fragment" />
+            android:id="@+id/developer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Desarrollado por Andrés Espósito "/>
 
-    </FrameLayout>
+    </LinearLayout>
+
 </layout>
