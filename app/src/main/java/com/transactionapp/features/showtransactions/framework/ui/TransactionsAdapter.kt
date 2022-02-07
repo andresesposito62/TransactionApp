@@ -8,13 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.transactionapp.R
 import com.transactionapp.app.domain.Transaction
 
-class TransactionsAdapter(private val dataSet: List<Transaction>) : RecyclerView.Adapter<TransacionsViewHolder>() {
+class TransactionsAdapter(private val dataSet: List<Transaction>, private val itemClickListener: OnTransactionClickListener) : RecyclerView.Adapter<TransacionsViewHolder>() {
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
-
+    interface OnTransactionClickListener{
+        fun onItemClick(transaction: Transaction)
+    }
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): TransacionsViewHolder {
@@ -40,6 +38,10 @@ class TransactionsAdapter(private val dataSet: List<Transaction>) : RecyclerView
         transacionsViewHolder.rrn.text = "Rrn: \n" + dataSet[position] .rrn?: ""
         transacionsViewHolder.statusCode.text = "Código de Status: \n" + dataSet[position].statusCode ?: ""
         transacionsViewHolder.statusDescription.text = "Descripción de estatus: \n" + dataSet[position].statusDescription ?: ""
+
+        transacionsViewHolder.deleteTransactionButton.setOnClickListener {
+            itemClickListener.onItemClick(dataSet[position])
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -57,4 +59,6 @@ class TransacionsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val rrn: TextView = view.findViewById(R.id.rrn)
     val statusCode: TextView = view.findViewById(R.id.statusCode)
     val statusDescription: TextView = view.findViewById(R.id.statusDescription)
+    val deleteTransactionButton: TextView = view.findViewById(R.id.deleteTransaction)
 }
+

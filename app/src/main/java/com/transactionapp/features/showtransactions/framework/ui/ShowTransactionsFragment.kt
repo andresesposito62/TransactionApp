@@ -12,10 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.transactionapp.R
 import com.transactionapp.app.domain.Transaction
+import com.transactionapp.app.framework.restapi.model.TransactionAnnulmentBody
 import com.transactionapp.databinding.FragmentListTransactionBinding
 import com.transactionapp.features.showtransactions.viewmodel.ShowTransactionsViewModelImpl
 
-class ShowTransactionsFragment : Fragment() {
+
+class ShowTransactionsFragment : Fragment(), TransactionsAdapter.OnTransactionClickListener {
 
     lateinit var viewModel: ShowTransactionsViewModelImpl
 
@@ -23,7 +25,6 @@ class ShowTransactionsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var navController: NavController
-
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     override fun onCreateView(
@@ -48,6 +49,14 @@ class ShowTransactionsFragment : Fragment() {
             }
         }
 
+        viewModel.transactionAnnulmentErrorLiveData.observe(viewLifecycleOwner) {
+            //binding.textView.text = it
+        }
+
+        viewModel.transactionAnnulmentResultLiveData.observe(viewLifecycleOwner) {
+            //binding.textView.text = it.toString()
+        }
+
         _binding = FragmentListTransactionBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,11 +68,12 @@ class ShowTransactionsFragment : Fragment() {
         linearLayoutManager = LinearLayoutManager(context)
         binding.recyclerView.layoutManager = linearLayoutManager
 
+
         viewModel.onGetTransactionList("")
     }
 
     private fun setRecyclerView(transactionList: List<Transaction>){
-        val adapter = TransactionsAdapter(transactionList)
+        val adapter = TransactionsAdapter(transactionList, this)
         binding.recyclerView.adapter = adapter
         adapter.notifyItemInserted(transactionList.size-1)
     }
@@ -86,5 +96,13 @@ class ShowTransactionsFragment : Fragment() {
     private fun discardLoader(){
         binding.loaderView.visibility = View.INVISIBLE
         binding.viewShowTransactions.alpha = 1.0F
+    }
+
+    override fun onItemClick(transaction: Transaction) {
+        //val bundle = bundleOf("movie" to movie)
+        //el objeto va a llegar del flujo de navegacion que tenemos hacia el dialogo detalle de pelicula
+        //findNavController().navigate(R.id.MovieDetailDialog, bundle)
+        val authorization = "Basic MDAwMTIzMDAwQUJD"
+        viewModel.onPostTransactionAnnulment(authorization, TransactionAnnulmentBody(transaction.receiptId, transaction.rrn))
     }
 }
