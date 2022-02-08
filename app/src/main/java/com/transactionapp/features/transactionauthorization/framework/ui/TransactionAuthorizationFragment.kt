@@ -69,7 +69,9 @@ class TransactionAuthorizationFragment : Fragment() {
             transaction.transactionId = uniqueId ?:""
             transaction.commerceCode = binding.commerceCode.editText?.text?.trim().toString() ?: ""
             transaction.terminalCode = binding.terminalCode.editText?.text?.trim().toString() ?: ""
-            transaction.amount = binding.amount.editText?.text?.trim().toString() ?: ""
+            var amount = binding.amount.editText?.text?.trim().toString() ?: ""
+            transaction.amount = amount.substring(0, amount.indexOf(".")+ 3)
+            transaction.amount = transaction.amount?.replace(".","")
             transaction.cardNumber = binding.cardNumber.editText?.text?.trim().toString() ?: ""
 
             val authorizationBody = TransactionAuthorizationBody(
