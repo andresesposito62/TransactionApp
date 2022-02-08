@@ -1,9 +1,11 @@
 package com.transactionapp.features.showtransactions.framework.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -47,6 +49,7 @@ class ShowTransactionDetailsFragment : Fragment() {
 
         binding.transaccionDetails.deleteView.visibility = View.VISIBLE
         alertDialog?.cancel()
+        hideKeyBoard()
 
         binding.transaccionDetails.deleteTransactionButton.setOnClickListener {
             setLoader()
@@ -63,6 +66,14 @@ class ShowTransactionDetailsFragment : Fragment() {
         binding.transaccionDetails.rrn.text = transactionToShow?.rrn ?: resources.getString(R.string.not_transactions_found_text)
         binding.transaccionDetails.statusCode.text = transactionToShow?.statusCode ?: resources.getString(R.string.not_transactions_found_text)
         binding.transaccionDetails.statusDescription.text = transactionToShow?.statusDescription ?: resources.getString(R.string.not_transactions_found_text)
+    }
+
+    private fun hideKeyBoard() {
+        val view = activity?.currentFocus
+        if (view != null) {
+            val input = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            input.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     private fun setLoader(){
@@ -104,6 +115,7 @@ class ShowTransactionDetailsFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         alertDialog?.cancel()
+        hideKeyBoard()
     }
 
     companion object{

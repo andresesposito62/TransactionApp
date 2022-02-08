@@ -34,7 +34,9 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFinish() {
-                findNavController().navigate(R.id.listTransactionFragment)
+                if (findNavController().currentDestination?.id == R.id.homeFragment){
+                    findNavController().navigate(R.id.listTransactionFragment)
+                }
             }
         }.start()
     }
