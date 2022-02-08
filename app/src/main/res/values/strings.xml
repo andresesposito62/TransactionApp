@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">TransactionApp</string>
+    <string name="home">Home</string>
+    <string name="action_transaction_authorization">Autorizar</string>
+    <string name="anulacion_de_transaccion">Anular</string>
+    <string name="action_search_transaction">Buscar</string>
+    <string name="buscar_transaccion_title">BUSCAR TRANSACCIÓN</string>
+    <string name="action_show_transaccions">Mostrar</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="transaction_autorization_title">AUTORIZACIÓN DE TRANSACCIÓN</string>
+    <string name="commerce_code">Código de comercio</string>
+    <string name="terminal_code">Código de terminal</string>
+    <string name="amount">Monto</string>
+    <string name="card_number">Número de la tarjeta</string>
+    <string name="autorization_button_text">Autorizar</string>
+    <string name="success_transaction_authorization">Transacción autorizada!</string>
+    <string name="failure_transaction_authorization">Ups…Lo sentimos, algo ha ido mal!</string>
+    <string name="details_text">¿Desea ver los detalles de la transacción?</string>
+    <string name="decline_text">No</string>
+    <string name="go_text">Ver</string>
+    <string name="transaccion_title">TRANSACCIÓN</string>
+    <string name="delete_transaction_text">Borrar transacción</string>
+    <string name="not_transactions_available_text">Aún no posees transacciones</string>
+    <string name="receiptId_text">Id de recibo</string>
+    <string name="not_transactions_found_text">Transacción no encontrada</string>
+    <string name="transaction_found_success">Transacción encontrada!</string>
+    <string name="not_detail_available">NO DISPONIBLE</string>
+    <string name="id_transaction_text">Id de transacción:</string>
+    <string name="commerce_code_text_detail">Código de comercio:</string>
+    <string name="terminal_code_text_detail">Código de terminal:</string>
+    <string name="amount_code_text_detail">Monto:</string>
+    <string name="number_card_text_detail">Número de tarjeta:</string>
+    <string name="receipt_id_text_detail">Id de recibo:</string>
+    <string name="rrn_text_detail">Rrn:</string>
+    <string name="status_code_text_detail">Código de Status:</string>
+    <string name="description_status_text_detail">Descripción de estatus:</string>
+    <string name="transaction_not_found_text">Lo sentimos, no ha sido posible encontrar la transaccion solicitada</string>
+    <string name="transaction_deleted">Transacción eliminada!</string>
+    <string name="transaction_has_been_deleted">La transacción ya no se encuentra en el sistema</string>
+    <string name="transaction_not_deleted">Lo sentimos…No ha sido posible eliminar la transacción</string>
+    <string name="developer_string">Desarrollado por Andrés Espósito</string>
+
+
 </resources>

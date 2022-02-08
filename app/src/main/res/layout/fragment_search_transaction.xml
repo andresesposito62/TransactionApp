@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/view_container_transaction_authorization"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/loaderView"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:indeterminate="true" />
+
+
+        <LinearLayout
+            android:id="@+id/transaction_content"
+            style="@style/ContainerPrimary">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/style_titles"
+                android:text="@string/buscar_transaccion_title"
+                android:layout_marginBottom="@dimen/intermediate_margin"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/receiptIdEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/receiptId_text"
+                android:layout_marginTop="@dimen/fragment_vertical_margin"
+                android:layout_marginBottom="@dimen/intermediate_margin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_search_transaction"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/intermediate_margin"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
