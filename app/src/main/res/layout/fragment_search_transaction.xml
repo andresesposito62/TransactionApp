@@ -16,12 +16,6 @@
             android:layout_height="5dp"
             android:indeterminate="true" />
 
-        <!--
-        <include
-            android:id="@+id/offline"
-            layout="@/view_offline"
-            android:visibility="gone"/>
-        -->
 
         <LinearLayout
             android:id="@+id/transaction_content"

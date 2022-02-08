@@ -38,6 +38,7 @@
     <string name="transaction_deleted">Transacción eliminada!</string>
     <string name="transaction_has_been_deleted">La transacción ya no se encuentra en el sistema</string>
     <string name="transaction_not_deleted">Lo sentimos…No ha sido posible eliminar la transacción</string>
+    <string name="developer_string">Desarrollado por Andrés Espósito</string>
 
 
 </resources>
