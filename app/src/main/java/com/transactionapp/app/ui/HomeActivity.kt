@@ -54,6 +54,10 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        navController?.popBackStack()
+    }
+
     companion object{
         const val AUTHORIZE_ACTION = "Autorizar"
         const val SEARCH_ACTION = "Buscar"
